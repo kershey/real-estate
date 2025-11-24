@@ -15,18 +15,18 @@ export function Hero() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6">
         <div className="max-w-2xl space-y-6">
-          <h1 className="text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
+          <h1 className="text-5xl font-bold leading-tight text-white drop-shadow-lg md:text-6xl lg:text-7xl">
             Simplifying Property Buying,
             <br />
             Selling, and Renting
           </h1>
-          <p className="max-w-xl text-base text-white/90 md:text-lg">
+          <p className="max-w-xl text-base text-white drop-shadow-md md:text-lg">
             Your life revolves around home should too. We design flexible living
             spaces that adapt to your current lifestyle, embracing comfort,
             functionality, and style in every step of life.
