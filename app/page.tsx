@@ -4,6 +4,8 @@ import { ConnectingSection } from "@/components/ConnectingSection";
 import { WhatWeOffer } from "@/components/WhatWeOffer";
 import { FacilitiesSection } from "@/components/FacilitiesSection";
 import { PropertyListings } from "@/components/PropertyListings";
+import { Testimonials } from "@/components/Testimonials";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -15,7 +17,9 @@ export default function Home() {
         <WhatWeOffer />
         <FacilitiesSection />
         <PropertyListings />
+        <Testimonials />
       </main>
+      <Footer />
     </div>
   );
 }
