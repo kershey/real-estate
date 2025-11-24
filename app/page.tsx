@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { ConnectingSection } from "@/components/ConnectingSection";
 import { WhatWeOffer } from "@/components/WhatWeOffer";
 import { FacilitiesSection } from "@/components/FacilitiesSection";
+import { PropertyListings } from "@/components/PropertyListings";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <ConnectingSection />
         <WhatWeOffer />
         <FacilitiesSection />
+        <PropertyListings />
       </main>
     </div>
   );
