@@ -23,10 +23,10 @@ export function Header() {
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <Link
-              href="/facilities"
+              href="/"
               className="text-sm font-medium text-white hover:text-white/80 transition-colors"
             >
-              Facilities
+              Home
             </Link>
             <Link
               href="/about"
@@ -35,10 +35,10 @@ export function Header() {
               About
             </Link>
             <Link
-              href="/listings"
+              href="/contact"
               className="text-sm font-medium text-white hover:text-white/80 transition-colors"
             >
-              Listings
+              Contact Us
             </Link>
           </nav>
 
