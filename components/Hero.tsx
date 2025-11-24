@@ -22,14 +22,10 @@ export function Hero() {
       <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6">
         <div className="max-w-2xl space-y-6">
           <h1 className="text-5xl font-bold leading-tight text-white drop-shadow-lg md:text-6xl lg:text-7xl">
-            Simplifying Property Buying,
-            <br />
-            Selling, and Renting
+            Your Trusted Real Estate Partner
           </h1>
           <p className="max-w-xl text-base text-white drop-shadow-md md:text-lg">
-            Your life revolves around home should too. We design flexible living
-            spaces that adapt to your current lifestyle, embracing comfort,
-            functionality, and style in every step of life.
+            Whether you're buying your first home, selling your property, or finding the perfect rental, we're here to guide you every step of the way. Experience seamless transactions, expert advice, and personalized service that puts your needs first.
           </p>
           <Button
             size="lg"

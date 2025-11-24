@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 export function ConnectingSection() {
   return (
@@ -18,8 +18,8 @@ export function ConnectingSection() {
           {/* Right Column - Description */}
           <div className="flex items-center">
             <p className="text-base leading-relaxed text-gray-600 md:text-lg">
-              Urbanet is a leading real estate platform dedicated to connecting
-              buyers, sellers, and renters with their perfect property.
+              Apex is a leading real estate platform dedicated to connecting buyers, sellers, and renters with their
+              perfect property.
             </p>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Home } from "lucide-react";
 
 export function Header() {
   return (
@@ -8,11 +8,16 @@ export function Header() {
       <div className="mx-auto max-w-7xl px-6 py-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 text-white">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
-              <Home className="h-4 w-4 text-white" />
+          <Link href="/" className="flex items-center transition-opacity hover:opacity-80">
+            <div className="relative h-24 w-24">
+              <Image
+                src="/logo.png"
+                alt="Real Estate Logo"
+                fill
+                className="object-contain drop-shadow-md"
+                priority
+              />
             </div>
-            <span className="text-lg font-semibold">Urbanet</span>
           </Link>
 
           {/* Navigation */}
