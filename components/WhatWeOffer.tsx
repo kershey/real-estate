@@ -1,4 +1,8 @@
+'use client';
+
 import Image from "next/image";
+import { FadeIn } from "./animations/FadeIn";
+import { StaggerContainer, StaggerItem } from "./animations/StaggerContainer";
 
 export function WhatWeOffer() {
   const services = [
@@ -27,37 +31,38 @@ export function WhatWeOffer() {
   return (
     <section className="py-20 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-start mb-12">
-          <h2 className="text-5xl font-bold text-gray-900">What We Offer</h2>
-          <p className="text-gray-600 max-w-md text-right">
-            We are redefining real estate with innovation and excellence.
-          </p>
-        </div>
+        <FadeIn>
+          <div className="flex justify-between items-start mb-12">
+            <h2 className="text-5xl font-bold text-gray-900">What We Offer</h2>
+            <p className="text-gray-600 max-w-md text-right">
+              We are redefining real estate with innovation and excellence.
+            </p>
+          </div>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StaggerContainer staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
-            <div
-              key={index}
-              className="relative rounded-3xl overflow-hidden h-[420px] w-full group cursor-pointer"
-            >
-              <Image
-                src={service.image}
-                alt={service.title}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-              <div className="absolute bottom-5 left-5 right-5 bg-white rounded-2xl p-5 h-[175px] flex flex-col">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex-shrink-0">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 text-[13px] leading-[1.65] overflow-hidden">
-                  {service.description}
-                </p>
+            <StaggerItem key={index}>
+              <div className="relative rounded-3xl overflow-hidden h-[420px] w-full group cursor-pointer">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                <div className="absolute bottom-5 left-5 right-5 bg-white rounded-2xl p-5 h-[175px] flex flex-col">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3 flex-shrink-0">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 text-[13px] leading-[1.65] overflow-hidden">
+                    {service.description}
+                  </p>
+                </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

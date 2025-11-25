@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FadeIn } from './animations/FadeIn';
 
 const testimonials = [
   {
@@ -61,17 +63,21 @@ export function Testimonials() {
     <section className="py-24 px-6 bg-gray-50">
       <div className="max-w-4xl mx-auto text-center">
         {/* Heading */}
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-16">
-          Hear from our satisfied clients
-        </h2>
+        <FadeIn>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-16">
+            Hear from our satisfied clients
+          </h2>
+        </FadeIn>
 
         {/* Testimonial Content with Navigation */}
         <div className="relative min-h-[380px] flex items-center justify-center">
           {/* Previous Button */}
-          <button
+          <motion.button
             onClick={handlePrevious}
             className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 text-gray-600 hover:text-gray-900 z-10"
             aria-label="Previous testimonial"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
             <svg
               className="w-5 h-5"
@@ -86,52 +92,71 @@ export function Testimonials() {
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-          </button>
+          </motion.button>
 
-          {/* Testimonials */}
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={testimonial.id}
-              className={`absolute inset-0 px-12 transition-opacity duration-500 ${
-                index === currentIndex ? 'opacity-100' : 'opacity-0 pointer-events-none'
-              }`}
+          {/* Testimonials with AnimatePresence */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0 px-12"
             >
               <blockquote className="space-y-8">
                 {/* Avatar */}
                 <div className="flex justify-center mb-6">
-                  <div className="relative w-20 h-20 rounded-full overflow-hidden ring-4 ring-white shadow-lg">
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="relative w-20 h-20 rounded-full overflow-hidden ring-4 ring-white shadow-lg"
+                  >
                     <Image
-                      src={testimonial.avatar}
-                      alt={testimonial.name}
+                      src={testimonials[currentIndex].avatar}
+                      alt={testimonials[currentIndex].name}
                       fill
                       className="object-cover"
                     />
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Quote */}
-                <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-                  "{testimonial.quote}"
-                </p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-lg md:text-xl text-gray-600 leading-relaxed"
+                >
+                  "{testimonials[currentIndex].quote}"
+                </motion.p>
 
                 {/* Author Info */}
-                <footer className="space-y-1">
+                <motion.footer
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="space-y-1"
+                >
                   <div className="font-semibold text-gray-900 text-lg">
-                    {testimonial.name}
+                    {testimonials[currentIndex].name}
                   </div>
                   <div className="text-sm text-gray-500">
-                    {testimonial.role}
+                    {testimonials[currentIndex].role}
                   </div>
-                </footer>
+                </motion.footer>
               </blockquote>
-            </div>
-          ))}
+            </motion.div>
+          </AnimatePresence>
 
           {/* Next Button */}
-          <button
+          <motion.button
             onClick={handleNext}
             className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 text-gray-600 hover:text-gray-900 z-10"
             aria-label="Next testimonial"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
             <svg
               className="w-5 h-5"
@@ -146,21 +171,23 @@ export function Testimonials() {
                 d="M9 5l7 7-7 7"
               />
             </svg>
-          </button>
+          </motion.button>
         </div>
 
         {/* Navigation Dots */}
         <div className="flex justify-center gap-2 mt-12">
           {testimonials.map((_, index) => (
-            <button
+            <motion.button
               key={index}
               onClick={() => handleDotClick(index)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+              className={`h-2.5 rounded-full transition-all duration-300 ${
                 index === currentIndex
                   ? 'bg-gray-900 w-8'
-                  : 'bg-gray-300 hover:bg-gray-400'
+                  : 'bg-gray-300 hover:bg-gray-400 w-2.5'
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
             />
           ))}
         </div>

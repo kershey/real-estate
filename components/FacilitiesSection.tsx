@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Home,
   Search,
@@ -8,6 +10,8 @@ import {
   CreditCard,
   Users,
 } from "lucide-react";
+import { FadeIn } from "./animations/FadeIn";
+import { StaggerContainer, StaggerItem } from "./animations/StaggerContainer";
 
 export function FacilitiesSection() {
   const facilities = [
@@ -56,34 +60,38 @@ export function FacilitiesSection() {
   return (
     <section className="py-20 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-start mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 max-w-md">
-            Discover the Facilities We Offer at Apex
-          </h2>
-          <p className="text-gray-600 max-w-md text-right">
-            With innovative solutions, market expertise, and a customer-first
-            approach, we simplify the process to ensure a smooth experience.
-          </p>
-        </div>
+        <FadeIn>
+          <div className="flex justify-between items-start mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 max-w-md">
+              Discover the Facilities We Offer at Apex
+            </h2>
+            <p className="text-gray-600 max-w-md text-right">
+              With innovative solutions, market expertise, and a customer-first
+              approach, we simplify the process to ensure a smooth experience.
+            </p>
+          </div>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <StaggerContainer staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {facilities.map((facility, index) => {
             const Icon = facility.icon;
             return (
-              <div key={index} className="flex flex-col items-start">
-                <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-gray-900" />
+              <StaggerItem key={index}>
+                <div className="flex flex-col items-start">
+                  <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-gray-900" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    {facility.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {facility.description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {facility.title}
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {facility.description}
-                </p>
-              </div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
