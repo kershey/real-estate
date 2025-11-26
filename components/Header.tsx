@@ -1,76 +1,41 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import Link from 'next/link';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
-interface HeaderProps {
-  variant?: "dark" | "light";
-}
-
-export function Header({ variant = "dark" }: HeaderProps) {
-  const isDark = variant === "dark";
-
+export function Header() {
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 w-full transition-colors ${
-      isDark ? "bg-transparent" : "bg-white/95 backdrop-blur-md border-b border-slate-200"
-    }`}>
-      <div className="mx-auto max-w-7xl px-6 py-6">
-        <div className="flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex items-center justify-between bg-white rounded-xl sm:rounded-2xl shadow-lg px-3 py-1 sm:px-4 sm:py-1 md:px-6 md:py-1.5">
           {/* Logo */}
           <Link href="/" className="flex items-center transition-opacity hover:opacity-80">
-            <div className="relative h-24 w-24">
-              <Image
-                src="/logo.png"
-                alt="Real Estate Logo"
-                fill
-                className="object-contain drop-shadow-md"
-                priority
-              />
+            <div className="relative h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 lg:h-20 lg:w-20">
+              <Image src="/logo-black.png" alt="Real Estate Logo" fill className="object-contain" priority />
             </div>
           </Link>
-
           {/* Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8 absolute left-1/2 -translate-x-1/2">
             <Link
               href="/"
-              className={`text-sm font-medium transition-colors ${
-                isDark
-                  ? "text-white hover:text-white/80"
-                  : "text-slate-900 hover:text-slate-600"
-              }`}
+              className="text-sm lg:text-base font-medium text-black hover:text-black/70 transition-colors"
             >
               Home
             </Link>
             <Link
               href="/about"
-              className={`text-sm font-medium transition-colors ${
-                isDark
-                  ? "text-white hover:text-white/80"
-                  : "text-slate-900 hover:text-slate-600"
-              }`}
+              className="text-sm lg:text-base font-medium text-black hover:text-black/70 transition-colors"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className={`text-sm font-medium transition-colors ${
-                isDark
-                  ? "text-white hover:text-white/80"
-                  : "text-slate-900 hover:text-slate-600"
-              }`}
+              className="text-sm lg:text-base font-medium text-black hover:text-black/70 transition-colors"
             >
-              Contact Us
+              Contact
             </Link>
           </nav>
-
-          {/* Contact Button */}
-          <Button
-            variant="outline"
-            className={
-              isDark
-                ? "border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
-                : "border-slate-300 bg-slate-900 text-white hover:bg-slate-800"
-            }
-          >
+          {/* CTA Button */}
+          <Button className="bg-black text-white hover:bg-black/90 rounded-lg sm:rounded-xl px-3 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2 text-xs sm:text-sm md:text-base font-medium">
             Contact Agent
           </Button>
         </div>
