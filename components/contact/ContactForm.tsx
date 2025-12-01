@@ -56,7 +56,7 @@ export function ContactForm() {
   });
 
   return (
-    <section className="py-24 md:py-32 bg-white">
+    <section className="py-24 md:py-32 bg-gradient-to-b from-white to-stone-100/50">
       <div className="mx-auto max-w-4xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -65,11 +65,12 @@ export function ContactForm() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Send Me a <span className="italic font-light">Message</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-stone-900">
+            I'd Love to <span className="italic font-light text-stone-600">Hear From You</span>
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Fill out the form below and I'll get back to you as soon as possible. All fields are required.
+          <p className="text-lg text-stone-700 max-w-2xl mx-auto">
+            Tell me about your family and what you're looking for in a home. Whether you're just
+            starting to explore or ready to make a move, I'm here to help every step of the way.
           </p>
         </motion.div>
 
@@ -79,7 +80,7 @@ export function ContactForm() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <form onSubmit={handleSubmit(onSubmit)} className="bg-slate-50 rounded-3xl p-8 md:p-12 space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="bg-white border border-stone-200 rounded-3xl p-8 md:p-12 space-y-6 shadow-lg">
             {/* Success/Error Message */}
             {result && (
               <motion.div
@@ -107,9 +108,9 @@ export function ContactForm() {
                 <Input
                   id="name"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder="Your name"
                   {...register('name', { required: 'Name is required' })}
-                  className="bg-white border-slate-300 focus:border-black h-12"
+                  className="bg-stone-50 border-stone-300 focus:border-stone-500 h-12 focus:ring-stone-200"
                 />
                 {errors.name && <p className="text-sm text-red-600">{errors.name.message}</p>}
               </div>
@@ -121,7 +122,7 @@ export function ContactForm() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder="your.email@example.com"
                   {...register('email', {
                     required: 'Email is required',
                     pattern: {
@@ -129,7 +130,7 @@ export function ContactForm() {
                       message: 'Invalid email address',
                     },
                   })}
-                  className="bg-white border-slate-300 focus:border-black h-12"
+                  className="bg-stone-50 border-stone-300 focus:border-stone-500 h-12 focus:ring-stone-200"
                 />
                 {errors.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
               </div>
@@ -146,7 +147,7 @@ export function ContactForm() {
                   type="tel"
                   placeholder="(407) 555-0123"
                   {...register('phone', { required: 'Phone number is required' })}
-                  className="bg-white border-slate-300 focus:border-black h-12"
+                  className="bg-stone-50 border-stone-300 focus:border-stone-500 h-12 focus:ring-stone-200"
                 />
                 {errors.phone && <p className="text-sm text-red-600">{errors.phone.message}</p>}
               </div>
@@ -158,9 +159,9 @@ export function ContactForm() {
                 <Input
                   id="subject"
                   type="text"
-                  placeholder="I'm interested in buying a home"
+                  placeholder="Looking for a family home"
                   {...register('subject', { required: 'Subject is required' })}
-                  className="bg-white border-slate-300 focus:border-black h-12"
+                  className="bg-stone-50 border-stone-300 focus:border-stone-500 h-12 focus:ring-stone-200"
                 />
                 {errors.subject && <p className="text-sm text-red-600">{errors.subject.message}</p>}
               </div>
@@ -173,7 +174,7 @@ export function ContactForm() {
               </Label>
               <Textarea
                 id="message"
-                placeholder="Tell me about your real estate needs..."
+                placeholder="Tell me about your family and what you're looking for... How many kids do you have? What neighborhoods interest you? Are good schools a priority?"
                 rows={6}
                 {...register('message', {
                   required: 'Message is required',
@@ -182,7 +183,7 @@ export function ContactForm() {
                     message: 'Message must be at least 10 characters',
                   },
                 })}
-                className="bg-white border-slate-300 focus:border-black resize-none"
+                className="bg-stone-50 border-stone-300 focus:border-stone-500 resize-none focus:ring-stone-200"
               />
               {errors.message && <p className="text-sm text-red-600">{errors.message.message}</p>}
             </div>
@@ -200,7 +201,7 @@ export function ContactForm() {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full h-12 bg-black text-white hover:bg-black/90 font-medium text-base"
+              className="w-full h-12 bg-gradient-to-r from-stone-700 to-stone-800 text-white hover:from-stone-800 hover:to-stone-900 font-medium text-base shadow-md hover:shadow-lg transition-all"
             >
               {isSubmitting ? (
                 <>
@@ -208,14 +209,13 @@ export function ContactForm() {
                   Sending...
                 </>
               ) : (
-                'Send Message'
+                'Start the Conversation'
               )}
             </Button>
 
             {/* Privacy Notice */}
-            <p className="text-xs text-slate-500 text-center">
-              By submitting this form, you agree to our privacy policy. We will never share your information with third
-              parties.
+            <p className="text-xs text-stone-600 text-center">
+              Your privacy matters. I will never share your family's information with anyone.
             </p>
           </form>
         </motion.div>
