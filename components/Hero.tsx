@@ -15,8 +15,8 @@ export function Hero() {
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
         <Image
-          src="/hero-house.jpg"
-          alt="Modern luxury home at dusk"
+          src="/hero-family-home-img.jpg"
+          alt="Warm and inviting family home with wraparound porch and spacious yard"
           fill
           className="object-cover"
           priority
@@ -41,7 +41,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            Whether you're buying your first home, selling your property, or finding the perfect rental, we're here to guide you every step of the way. Experience seamless transactions, expert advice, and personalized service that puts your needs first.
+            Finding the right home for your family is about more than just square footage. It's about safe neighborhoods, good schools, and spaces where your children can grow and thrive. We're here to help you discover a place where your family can build lasting memories together.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 30 }}

@@ -9,36 +9,36 @@ export function PropertyListings() {
   const properties = [
     {
       id: 1,
-      name: "Family Home",
+      name: "Cozy Neighborhood Home",
       price: "$350,000",
       priceType: "sale",
       type: "Houses",
       status: "For Sale",
-      description: "Experience the perfect blend of elegance in our luxury home with modern amenities.",
-      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+      description: "Charming home on a quiet street where kids ride bikes and neighbors know each other. Perfect backyard for playtime, close to excellent schools.",
+      image: "/property-family-home.jpg",
       bedrooms: 3,
       sqft: "2,000 sq ft",
     },
     {
       id: 2,
-      name: "Suburban Villa",
+      name: "Spacious Family Haven",
       price: "$850,000",
       priceType: "sale",
       type: "Villa",
       status: "For Rent",
-      description: "Escape to tranquility with our Spacious Suburban Villa, where elegance meets comfort.",
-      image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80",
+      description: "Room for the whole family to spread out and grow. Large yard for kids to explore, quiet cul-de-sac, and walking distance to parks and playgrounds.",
+      image: "/property-suburban-home.jpg",
       bedrooms: 5,
       sqft: "4,500 sq ft",
     },
     {
       id: 3,
-      name: "Downtown Apartment",
+      name: "Family Starter Home",
       price: "$1,800",
       priceType: "month",
       type: "Apartment",
       status: "For Rent",
-      description: "Experience city living in our Cozy Downtown Apartment, where modern meets convenience.",
+      description: "Perfect for young families just starting out. Steps from elementary school and playground, safe neighborhood with family-friendly community events.",
       image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80",
       bedrooms: 2,
       sqft: "1,200 sq ft",
@@ -50,7 +50,7 @@ export function PropertyListings() {
       <div className="max-w-7xl mx-auto">
         <FadeIn>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-16 max-w-3xl mx-auto leading-tight">
-            Explore and Browse Our Exclusive Property Listings
+            Find Your Family's Perfect Home
           </h2>
         </FadeIn>
 
