@@ -13,7 +13,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
-      <Header variant="light" />
+      <Header />
       <main className="pt-32">
         <AboutHero />
         <BioSection />

@@ -30,8 +30,8 @@ export function ContactForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [result, setResult] = useState<string>('');
 
-  // Replace with your actual Web3Forms access key
-  const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+  // Web3Forms access key from environment variable
+  const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
 
   const { submit: onSubmit } = useWeb3Forms({
     access_key: accessKey,
