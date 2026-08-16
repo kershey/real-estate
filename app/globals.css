@@ -7,6 +7,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-fraunces);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -43,73 +44,88 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/*
+  Warm family palette. Hue anchored 45-85deg (clay through warm sand).
+  Chroma is deliberately non-zero on every user-facing token: a fully
+  desaturated black/white/gray theme reads as modern-luxury, which is the
+  opposite of this site's audience. See
+  openspec/changes/warm-family-repositioning/design.md - D2.
+
+  Contrast verified against WCAG 2.1:
+    foreground/background 16.04:1, muted-foreground/background 5.87:1,
+    primary-foreground/primary 7.66:1, input/surface 3.29:1, ring 3.60:1.
+
+  --border is intentionally low-contrast (decorative dividers only).
+  --input is a separate, darker token because a form field's boundary is
+  the only visual indicator of the control and must clear 3:1 (WCAG 1.4.11).
+*/
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --background: oklch(0.99 0.006 85);
+  --foreground: oklch(0.24 0.018 55);
+  --card: oklch(0.995 0.0045 85);
+  --card-foreground: oklch(0.24 0.018 55);
+  --popover: oklch(0.995 0.0045 85);
+  --popover-foreground: oklch(0.24 0.018 55);
+  --primary: oklch(0.44 0.075 45);
+  --primary-foreground: oklch(0.985 0.008 85);
+  --secondary: oklch(0.95 0.014 80);
+  --secondary-foreground: oklch(0.3 0.03 50);
+  --muted: oklch(0.96 0.012 82);
+  --muted-foreground: oklch(0.5 0.022 55);
+  --accent: oklch(0.92 0.038 75);
+  --accent-foreground: oklch(0.32 0.038 45);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.9 0.012 78);
+  --input: oklch(0.64 0.028 62);
+  --ring: oklch(0.62 0.058 50);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: oklch(0.98 0.008 84);
+  --sidebar-foreground: oklch(0.24 0.018 55);
+  --sidebar-primary: oklch(0.44 0.075 45);
+  --sidebar-primary-foreground: oklch(0.985 0.008 85);
+  --sidebar-accent: oklch(0.95 0.014 80);
+  --sidebar-accent-foreground: oklch(0.3 0.03 50);
+  --sidebar-border: oklch(0.9 0.012 78);
+  --sidebar-ring: oklch(0.62 0.058 50);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --background: oklch(0.19 0.012 55);
+  --foreground: oklch(0.96 0.008 85);
+  --card: oklch(0.24 0.014 52);
+  --card-foreground: oklch(0.96 0.008 85);
+  --popover: oklch(0.24 0.014 52);
+  --popover-foreground: oklch(0.96 0.008 85);
+  --primary: oklch(0.74 0.07 55);
+  --primary-foreground: oklch(0.22 0.02 50);
+  --secondary: oklch(0.3 0.018 52);
+  --secondary-foreground: oklch(0.96 0.008 85);
+  --muted: oklch(0.3 0.018 52);
+  --muted-foreground: oklch(0.72 0.018 65);
+  --accent: oklch(0.34 0.03 55);
+  --accent-foreground: oklch(0.96 0.008 85);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --border: oklch(0.34 0.016 55);
+  --input: oklch(0.55 0.024 58);
+  --ring: oklch(0.6 0.05 50);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar: oklch(0.24 0.014 52);
+  --sidebar-foreground: oklch(0.96 0.008 85);
+  --sidebar-primary: oklch(0.74 0.07 55);
+  --sidebar-primary-foreground: oklch(0.22 0.02 50);
+  --sidebar-accent: oklch(0.3 0.018 52);
+  --sidebar-accent-foreground: oklch(0.96 0.008 85);
+  --sidebar-border: oklch(0.34 0.016 55);
+  --sidebar-ring: oklch(0.6 0.05 50);
 }
 
 @layer base {
@@ -118,5 +134,30 @@
   }
   body {
     @apply bg-background text-foreground;
+    /*
+      Geist was loaded but never actually applied - nothing set font-family,
+      so body copy fell through to the system sans. Same @theme inline caveat
+      as the headings below: reference the next/font variable directly.
+    */
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+  /*
+    Display headings use the humanist serif; interface text stays on Geist.
+    Geist is a geometric grotesque drawn for developer tooling - precise
+    and cool. The serif is what makes headings read warm rather than
+    technical. See design.md - D3.
+
+    h3 is deliberately excluded: it is used here for small card titles and
+    uppercase footer labels, where a serif reads fussy rather than warm.
+
+    Reference --font-fraunces directly, not --font-serif: `@theme inline`
+    inlines theme values into generated utilities and does not emit them as
+    custom properties, so var(--font-serif) resolves to nothing here. The
+    --font-serif entry in @theme is what powers the `font-serif` utility.
+  */
+  h1,
+  h2 {
+    font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+    letter-spacing: -0.015em;
   }
 }
