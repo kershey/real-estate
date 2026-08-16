@@ -1,14 +1,14 @@
 'use client';
 
 import {
-  Home,
-  Search,
-  HeadphonesIcon,
-  Smartphone,
-  Video,
-  DollarSign,
-  CreditCard,
-  Users,
+  School,
+  ShieldCheck,
+  Trees,
+  Clock,
+  Ruler,
+  PiggyBank,
+  CalendarClock,
+  MessageCircle,
 } from "lucide-react";
 import { FadeIn } from "./animations/FadeIn";
 import { StaggerContainer, StaggerItem } from "./animations/StaggerContainer";
@@ -16,58 +16,66 @@ import { StaggerContainer, StaggerItem } from "./animations/StaggerContainer";
 export function FacilitiesSection() {
   const facilities = [
     {
-      icon: Home,
-      title: "Diverse Property Listings",
-      description: "Access a wide range of properties to suit your needs.",
+      icon: School,
+      title: "Which School It Feeds",
+      description:
+        "Not the school nearby — the one the address is actually zoned for. I check the district map before you tour.",
     },
     {
-      icon: Search,
-      title: "Advanced Search Filters",
-      description: "Find properties tailored to your preferences.",
+      icon: ShieldCheck,
+      title: "How Safe the Street Is",
+      description:
+        "Traffic, speed, sidewalks, and how the block feels on a weekday evening rather than a Sunday open house.",
     },
     {
-      icon: HeadphonesIcon,
-      title: "Expert Support",
-      description: "Get expert advice and assistance at your fingertips.",
+      icon: Trees,
+      title: "Parks and Places to Play",
+      description:
+        "Where the nearest playground is, whether you can walk there, and which parks are worth the short drive.",
     },
     {
-      icon: Smartphone,
-      title: "User-Friendly Platform",
-      description: "Simple navigation for seamless property search.",
+      icon: Clock,
+      title: "The Real Commute",
+      description:
+        "Drive times at 7:30am, not at noon. School run and work run, because they are rarely the same trip.",
     },
     {
-      icon: Video,
-      title: "Virtual Tours",
-      description: "Explore properties from the comfort of your home.",
+      icon: Ruler,
+      title: "Room to Grow Into",
+      description:
+        "Whether the house still works when your kids are teenagers, not just whether it works this year.",
     },
     {
-      icon: DollarSign,
-      title: "Affordable Pricing",
-      description: "Competitive rates for every budget.",
+      icon: PiggyBank,
+      title: "What It Truly Costs",
+      description:
+        "Taxes, insurance, HOA dues and closing costs — the monthly number, not just the asking price.",
     },
     {
-      icon: CreditCard,
-      title: "Flexible Payment Options",
-      description: "Tailored payment plans for your convenience.",
+      icon: CalendarClock,
+      title: "Showings Around Your Life",
+      description:
+        "Evenings and weekends work. Bring the kids; I have seen worse than a toddler in an open house.",
     },
     {
-      icon: Users,
-      title: "Community Insights",
-      description: "Discover neighborhoods that match your lifestyle.",
+      icon: MessageCircle,
+      title: "Straight Answers",
+      description:
+        "If a house is wrong for your family, I will tell you. Talking you out of one is part of the job.",
     },
   ];
 
   return (
-    <section className="py-20 px-6 bg-white">
+    <section className="py-20 px-6 bg-background">
       <div className="max-w-7xl mx-auto">
         <FadeIn>
           <div className="flex justify-between items-start mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 max-w-md">
-              Discover the Facilities We Offer at Apex
+            <h2 className="text-4xl font-semibold text-foreground max-w-md">
+              What I Look At Before You Ever See a House
             </h2>
-            <p className="text-gray-600 max-w-md text-right">
-              With innovative solutions, market expertise, and a customer-first
-              approach, we simplify the process to ensure a smooth experience.
+            <p className="text-muted-foreground max-w-md text-right">
+              By the time a listing reaches you, I have already checked the
+              things that only start to matter once you live there.
             </p>
           </div>
         </FadeIn>
@@ -78,13 +86,13 @@ export function FacilitiesSection() {
             return (
               <StaggerItem key={index}>
                 <div className="flex flex-col items-start">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-gray-900" />
+                  <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-accent-foreground" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
                     {facility.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     {facility.description}
                   </p>
                 </div>

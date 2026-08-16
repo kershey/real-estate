@@ -6,13 +6,14 @@ import { CredentialsShowcase } from "@/components/about/CredentialsShowcase";
 import { AboutTestimonials } from "@/components/about/AboutTestimonials";
 
 export const metadata = {
-  title: "About | Real Estate Platform",
-  description: "Meet your trusted real estate professional",
+  title: "About",
+  description:
+    "Meet the agent helping Central Florida families find a home with good schools, safe streets, and room for children to grow.",
 };
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <Header />
       <main className="pt-32">
         <AboutHero />

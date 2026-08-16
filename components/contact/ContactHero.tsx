@@ -5,7 +5,7 @@ import { Mail, Phone, MapPin } from "lucide-react";
 
 export function ContactHero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-stone-100 via-amber-50/40 to-white py-24 md:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-br from-muted via-accent/40 to-background py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left: Typography */}
@@ -21,7 +21,7 @@ export function ContactHero() {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="inline-block"
               >
-                <span className="inline-block rounded-full bg-stone-200 px-4 py-2 text-sm font-medium text-stone-700">
+                <span className="inline-block rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground">
                   Let's Connect
                 </span>
               </motion.div>
@@ -30,20 +30,20 @@ export function ContactHero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-5xl md:text-7xl font-bold leading-tight text-stone-900"
+                className="text-4xl md:text-6xl font-semibold leading-tight text-foreground"
               >
                 Find Your Family's{" "}
-                <span className="italic font-light text-stone-600">Dream</span>
+                <span className="italic font-light text-muted-foreground">Dream</span>
                 <br />
                 Home{" "}
-                <span className="italic font-light text-stone-600">Together</span>
+                <span className="italic font-light text-muted-foreground">Together</span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
-                className="text-lg md:text-xl text-stone-700 leading-relaxed max-w-xl"
+                className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl"
               >
                 I understand that finding the right home for your family is about more than just a property.
                 It's about great schools, safe neighborhoods, parks for the kids, and a community where your
@@ -84,20 +84,20 @@ export function ContactHero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
-                className="bg-white border border-stone-200 rounded-2xl p-6 hover:shadow-lg hover:border-stone-300 transition-all"
+                className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg hover:border-input transition-all"
               >
                 <div className="flex items-start gap-4">
-                  <div className="bg-gradient-to-br from-stone-200 to-stone-100 rounded-xl p-3">
-                    <item.icon className="w-6 h-6 text-stone-700" />
+                  <div className="bg-accent rounded-xl p-3">
+                    <item.icon className="w-6 h-6 text-accent-foreground" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-stone-900 mb-1">
+                    <h3 className="font-semibold text-foreground mb-1">
                       {item.title}
                     </h3>
-                    <p className="text-lg text-stone-800 font-medium">
+                    <p className="text-lg text-foreground font-medium">
                       {item.content}
                     </p>
-                    <p className="text-sm text-stone-600 mt-1">
+                    <p className="text-sm text-muted-foreground mt-1">
                       {item.description}
                     </p>
                   </div>

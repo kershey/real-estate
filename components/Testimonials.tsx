@@ -1,32 +1,37 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FadeIn } from './animations/FadeIn';
 
-const testimonials = [
+/*
+ * MOCK CONTENT - placeholder testimonials awaiting real client quotes.
+ * Personas and wording follow the audience-voice spec (families who bought a
+ * home to live in - see the audience-voice spec for excluded personas), but the
+ * people are invented. Swap wholesale when real testimonials are available.
+ */
+const MOCK_TESTIMONIALS = [
   {
     id: 1,
-    quote: "Owning a villa by Apex has been life-changing. The luxurious design, private pool, and stunning views make every day feel like a vacation. It's the perfect blend of elegance and comfort. Couldn't be happier with our investment!",
-    name: "Tanya Rudwick",
-    role: "Villa Owner",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=faces"
+    quote:
+      "We were nervous about buying our first home with a toddler in tow. Every neighborhood we looked at came with an honest rundown - which streets stay quiet, which schools our daughter could actually get into. We never once felt rushed.",
+    name: "Danielle & Marcus Reyes",
+    role: "First-time buyers, Winter Garden",
   },
   {
     id: 2,
-    quote: "The entire booking process was seamless and stress-free. From browsing properties to finalizing the reservation, everything was intuitive and well-organized. The property exceeded our expectations in every way.",
-    name: "Michael Chen",
-    role: "Property Guest",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=faces"
+    quote:
+      "Our third kid arrived and the house just stopped working. We needed a real yard, a school district we trusted, and a budget that didn't keep us up at night. Somehow all three turned out to be in the same place.",
+    name: "The Okafor family",
+    role: "Moved up the street, Lake Nona",
   },
   {
     id: 3,
-    quote: "As a property investor, I've worked with many platforms, but this one stands out. The management tools, analytics, and support team have made property management effortless and profitable.",
-    name: "Sarah Martinez",
-    role: "Property Investor",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=faces"
-  }
+    quote:
+      "Relocating from out of state with two kids already in school is exactly as stressful as it sounds. We got video walkthroughs, straight answers about commute times, and someone who knew which parks were worth the drive.",
+    name: "Priya & Sam Whitfield",
+    role: "Relocated to Kissimmee",
+  },
 ];
 
 export function Testimonials() {
@@ -38,7 +43,7 @@ export function Testimonials() {
     if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      setCurrentIndex((prev) => (prev + 1) % MOCK_TESTIMONIALS.length);
     }, 5000); // Change every 5 seconds
 
     return () => clearInterval(interval);
@@ -46,12 +51,12 @@ export function Testimonials() {
 
   const handlePrevious = () => {
     setIsAutoPlaying(false);
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentIndex((prev) => (prev - 1 + MOCK_TESTIMONIALS.length) % MOCK_TESTIMONIALS.length);
   };
 
   const handleNext = () => {
     setIsAutoPlaying(false);
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    setCurrentIndex((prev) => (prev + 1) % MOCK_TESTIMONIALS.length);
   };
 
   const handleDotClick = (index: number) => {
@@ -60,21 +65,21 @@ export function Testimonials() {
   };
 
   return (
-    <section className="py-24 px-6 bg-gray-50">
+    <section className="py-24 px-6 bg-muted">
       <div className="max-w-4xl mx-auto text-center">
         {/* Heading */}
         <FadeIn>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-16">
-            Hear from our satisfied clients
+          <h2 className="text-4xl md:text-5xl font-semibold text-foreground mb-16">
+            Families I’ve helped find a home
           </h2>
         </FadeIn>
 
         {/* Testimonial Content with Navigation */}
-        <div className="relative min-h-[380px] flex items-center justify-center">
+        <div className="relative min-h-[260px] flex items-center justify-center">
           {/* Previous Button */}
           <motion.button
             onClick={handlePrevious}
-            className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 text-gray-600 hover:text-gray-900 z-10"
+            className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-card shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 text-muted-foreground hover:text-foreground z-10"
             aria-label="Previous testimonial"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -102,34 +107,17 @@ export function Testimonials() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="absolute inset-0 px-12"
+              className="absolute inset-0 flex items-center justify-center px-12"
             >
-              <blockquote className="space-y-8">
-                {/* Avatar */}
-                <div className="flex justify-center mb-6">
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="relative w-20 h-20 rounded-full overflow-hidden ring-4 ring-white shadow-lg"
-                  >
-                    <Image
-                      src={testimonials[currentIndex].avatar}
-                      alt={testimonials[currentIndex].name}
-                      fill
-                      className="object-cover"
-                    />
-                  </motion.div>
-                </div>
-
+              <blockquote className="space-y-6">
                 {/* Quote */}
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="text-lg md:text-xl text-gray-600 leading-relaxed"
+                  className="text-lg md:text-xl text-muted-foreground leading-relaxed"
                 >
-                  "{testimonials[currentIndex].quote}"
+                  "{MOCK_TESTIMONIALS[currentIndex].quote}"
                 </motion.p>
 
                 {/* Author Info */}
@@ -139,11 +127,11 @@ export function Testimonials() {
                   transition={{ delay: 0.4 }}
                   className="space-y-1"
                 >
-                  <div className="font-semibold text-gray-900 text-lg">
-                    {testimonials[currentIndex].name}
+                  <div className="font-semibold text-foreground text-lg">
+                    {MOCK_TESTIMONIALS[currentIndex].name}
                   </div>
-                  <div className="text-sm text-gray-500">
-                    {testimonials[currentIndex].role}
+                  <div className="text-sm text-muted-foreground">
+                    {MOCK_TESTIMONIALS[currentIndex].role}
                   </div>
                 </motion.footer>
               </blockquote>
@@ -153,7 +141,7 @@ export function Testimonials() {
           {/* Next Button */}
           <motion.button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 text-gray-600 hover:text-gray-900 z-10"
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-card shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 text-muted-foreground hover:text-foreground z-10"
             aria-label="Next testimonial"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -176,14 +164,14 @@ export function Testimonials() {
 
         {/* Navigation Dots */}
         <div className="flex justify-center gap-2 mt-12">
-          {testimonials.map((_, index) => (
+          {MOCK_TESTIMONIALS.map((_, index) => (
             <motion.button
               key={index}
               onClick={() => handleDotClick(index)}
               className={`h-2.5 rounded-full transition-all duration-300 ${
                 index === currentIndex
-                  ? 'bg-gray-900 w-8'
-                  : 'bg-gray-300 hover:bg-gray-400 w-2.5'
+                  ? 'bg-primary w-8'
+                  : 'bg-input hover:bg-muted-foreground w-2.5'
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
               whileHover={{ scale: 1.2 }}

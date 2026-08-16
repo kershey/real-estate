@@ -3,44 +3,49 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import Image from "next/image";
 
-const credentials = [
+/*
+ * MOCK CONTENT - placeholder credentials awaiting the agent's real
+ * designations. Shape follows the agent-profile spec - family and
+ * first-time-buyer relevance only, see that spec for excluded titles. The
+ * specific entries and years are invented.
+ */
+const MOCK_CREDENTIALS = [
   {
     year: "2014",
     title: "Licensed Real Estate Agent",
-    organization: "State Real Estate Commission",
-    description: "Obtained professional real estate license",
+    organization: "Florida Real Estate Commission",
+    description: "Where it started",
   },
   {
     year: "2016",
-    title: "Certified Negotiation Expert",
-    organization: "Real Estate Negotiation Institute",
-    description: "Advanced training in negotiation strategies",
+    title: "Accredited Buyer's Representative",
+    organization: "National Association of Realtors",
+    description: "Training focused entirely on the buyer's side of the table",
   },
   {
     year: "2018",
-    title: "Luxury Property Specialist",
-    organization: "Institute for Luxury Home Marketing",
-    description: "Certification in high-end property marketing",
+    title: "First-Time Home Buyer Specialist",
+    organization: "Florida Realtors",
+    description: "Down payment programs, inspections, and first-purchase pitfalls",
   },
   {
     year: "2020",
-    title: "Top Producer Award",
-    organization: "Regional Real Estate Board",
-    description: "Recognized for outstanding sales performance",
+    title: "Certified Relocation Specialist",
+    organization: "Worldwide ERC",
+    description: "Helping families moving to Florida from out of state",
   },
   {
     year: "2022",
-    title: "Investment Property Consultant",
+    title: "Pricing Strategy Advisor",
     organization: "National Association of Realtors",
-    description: "Specialized certification in investment properties",
+    description: "Pricing a family home honestly, for buyers and sellers alike",
   },
   {
     year: "2024",
-    title: "Technology Innovation Leader",
-    organization: "PropTech Association",
-    description: "Award for innovative use of technology in real estate",
+    title: "Central Florida Neighborhood Specialist",
+    organization: "Orlando Regional Realtor Association",
+    description: "School zoning, community programs, and local market detail",
   },
 ];
 
@@ -51,18 +56,8 @@ export function CredentialsShowcase() {
   return (
     <section
       ref={ref}
-      className="py-24 md:py-32 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden"
+      className="py-24 md:py-32 bg-gradient-to-b from-background to-muted relative overflow-hidden"
     >
-      {/* Subtle background image */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <Image
-          src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600&q=80"
-          alt="Luxury Interior"
-          fill
-          className="object-cover"
-        />
-      </div>
-
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         {/* Header */}
         <motion.div
@@ -71,21 +66,21 @@ export function CredentialsShowcase() {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <span className="text-sm font-medium text-slate-500 tracking-wider uppercase">
-            Credentials & Recognition
+          <span className="text-sm font-medium text-muted-foreground tracking-wider uppercase">
+            Training & Experience
           </span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold">
-            A Decade of <span className="italic font-light">Excellence</span>
+          <h2 className="mt-4 text-4xl md:text-5xl font-semibold">
+            Eleven Years, <span className="italic font-light">One Focus</span>
           </h2>
         </motion.div>
 
         {/* Timeline layout with staggered cards */}
         <div className="relative">
           {/* Vertical line - hidden on mobile */}
-          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 -translate-x-1/2" />
+          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2" />
 
           <div className="space-y-12 md:space-y-16">
-            {credentials.map((credential, index) => {
+            {MOCK_CREDENTIALS.map((credential, index) => {
               const isEven = index % 2 === 0;
 
               return (
@@ -99,12 +94,14 @@ export function CredentialsShowcase() {
                   }`}
                 >
                   {/* Year badge - centered on timeline for desktop */}
-                  <div
-                    className={`lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:z-10 ${
-                      isEven ? "lg:col-start-2" : "lg:col-start-1"
-                    }`}
-                  >
-                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-black text-white font-bold text-lg shadow-lg">
+                  {/*
+                    No lg:col-start here on purpose. An absolutely positioned
+                    grid child WITH a definite grid placement resolves
+                    left-1/2 against its grid *area* rather than the grid, which
+                    pushed alternate badges 324px off the centre line.
+                  */}
+                  <div className="lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:z-10">
+                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary text-primary-foreground font-semibold text-lg shadow-lg">
                       {credential.year}
                     </div>
                   </div>
@@ -120,7 +117,7 @@ export function CredentialsShowcase() {
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       transition={{ duration: 0.2 }}
-                      className={`bg-white rounded-2xl p-8 shadow-lg border border-slate-100 ${
+                      className={`bg-card rounded-2xl p-8 shadow-lg border border-border ${
                         isEven ? "lg:ml-auto" : "lg:mr-auto"
                       } max-w-md`}
                     >
@@ -132,9 +129,9 @@ export function CredentialsShowcase() {
                         }`}
                       >
                         {/* Icon */}
-                        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-black/5 flex items-center justify-center">
+                        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center">
                           <svg
-                            className="w-6 h-6 text-black"
+                            className="w-6 h-6 text-foreground"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -149,13 +146,13 @@ export function CredentialsShowcase() {
                         </div>
 
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-xl font-bold text-slate-900 mb-2">
+                          <h3 className="text-xl font-semibold text-foreground mb-2">
                             {credential.title}
                           </h3>
-                          <p className="text-sm font-medium text-slate-600 mb-2">
+                          <p className="text-sm font-medium text-muted-foreground mb-2">
                             {credential.organization}
                           </p>
-                          <p className="text-sm text-slate-500">
+                          <p className="text-sm text-muted-foreground">
                             {credential.description}
                           </p>
                         </div>
@@ -183,10 +180,10 @@ export function CredentialsShowcase() {
           className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8"
         >
           {[
-            { value: "10+", label: "Years Experience" },
+            { value: "11", label: "Years Licensed" },
             { value: "6", label: "Certifications" },
-            { value: "500+", label: "Properties Sold" },
-            { value: "15+", label: "Awards Won" },
+            { value: "6", label: "Communities Served" },
+            { value: "180+", label: "Families Helped" },
           ].map((stat, index) => (
             <motion.div
               key={index}
@@ -195,10 +192,10 @@ export function CredentialsShowcase() {
               transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold text-black mb-2">
+              <div className="text-4xl md:text-5xl font-semibold text-foreground mb-2">
                 {stat.value}
               </div>
-              <div className="text-sm text-slate-600">{stat.label}</div>
+              <div className="text-sm text-muted-foreground">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>

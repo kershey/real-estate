@@ -3,9 +3,20 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+/*
+ * MOCK CONTENT - placeholder figures awaiting the agent's real numbers.
+ * Shape follows the agent-profile spec (family-relevant proof points, no
+ * transaction-volume bragging); the values themselves are invented.
+ */
+const MOCK_STATS = [
+  { value: "180+", label: "Families Helped" },
+  { value: "11", label: "Years in Central Florida" },
+  { value: "60+", label: "First-Time Buyers Guided" },
+];
+
 export function AboutHero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-white py-24 md:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-br from-muted to-background py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left: Typography */}
@@ -22,7 +33,7 @@ export function AboutHero() {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="inline-block"
               >
-                <span className="inline-block rounded-full bg-black/5 px-4 py-2 text-sm font-medium text-black">
+                <span className="inline-block rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground">
                   About Me
                 </span>
               </motion.div>
@@ -31,23 +42,22 @@ export function AboutHero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-5xl md:text-7xl font-bold leading-tight"
+                className="text-4xl md:text-6xl font-semibold leading-tight text-foreground"
               >
-                Building <span className="italic font-light">Trust</span>
+                Helping Families
                 <br />
-                Through{" "}
-                <span className="italic font-light">Expertise</span>
+                <span className="italic font-light">Settle In</span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
-                className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl"
+                className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl"
               >
-                With over a decade of experience in real estate, I help clients
-                navigate the complex world of property transactions with
-                confidence and clarity.
+                I have spent eleven years helping families find homes here —
+                the kind with a school you feel good about, a street the kids
+                can ride bikes on, and room to grow into.
               </motion.p>
 
               <motion.div
@@ -56,30 +66,16 @@ export function AboutHero() {
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="flex flex-wrap gap-8 pt-8"
               >
-                <div>
-                  <div className="text-4xl md:text-5xl font-bold text-black">
-                    500+
+                {MOCK_STATS.map((stat) => (
+                  <div key={stat.label}>
+                    <div className="text-4xl md:text-5xl font-semibold text-primary">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-muted-foreground mt-1">
+                      {stat.label}
+                    </div>
                   </div>
-                  <div className="text-sm text-slate-600 mt-1">
-                    Properties Sold
-                  </div>
-                </div>
-                <div>
-                  <div className="text-4xl md:text-5xl font-bold text-black">
-                    $250M+
-                  </div>
-                  <div className="text-sm text-slate-600 mt-1">
-                    In Transactions
-                  </div>
-                </div>
-                <div>
-                  <div className="text-4xl md:text-5xl font-bold text-black">
-                    98%
-                  </div>
-                  <div className="text-sm text-slate-600 mt-1">
-                    Client Satisfaction
-                  </div>
-                </div>
+                ))}
               </motion.div>
             </div>
           </motion.div>
@@ -97,27 +93,27 @@ export function AboutHero() {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
-                className="absolute -top-6 -left-6 w-32 h-32 bg-black/5 rounded-full blur-3xl"
+                className="absolute -top-6 -left-6 w-32 h-32 bg-accent rounded-full blur-3xl"
               />
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.7, duration: 0.6 }}
-                className="absolute -bottom-6 -right-6 w-40 h-40 bg-black/5 rounded-full blur-3xl"
+                className="absolute -bottom-6 -right-6 w-40 h-40 bg-accent rounded-full blur-3xl"
               />
 
               {/* Image container with unique border treatment */}
-              <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-slate-100">
-                <div className="absolute inset-0 border-8 border-white rounded-3xl z-10" />
+              <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-muted">
+                <div className="absolute inset-0 border-8 border-background rounded-3xl z-10" />
                 <Image
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80"
-                  alt="Professional Real Estate Agent"
+                  src="/agent-portrait-placeholder.jpg"
+                  alt="Portrait of the agent, smiling"
                   fill
                   className="object-cover"
                   priority
                 />
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
               </div>
 
               {/* Floating badge - positioned outside overflow container */}
@@ -125,10 +121,10 @@ export function AboutHero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
-                className="absolute bottom-[-1.5rem] left-[-1.5rem] bg-black text-white rounded-2xl px-6 py-4 shadow-xl z-20"
+                className="absolute bottom-[-1.5rem] left-[-1.5rem] bg-primary text-primary-foreground rounded-2xl px-6 py-4 shadow-xl z-20"
               >
                 <div className="text-sm font-medium">Licensed Since</div>
-                <div className="text-2xl font-bold">2014</div>
+                <div className="text-2xl font-semibold">2014</div>
               </motion.div>
             </div>
           </motion.div>

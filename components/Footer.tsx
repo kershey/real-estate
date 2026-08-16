@@ -5,39 +5,38 @@ import { Input } from '@/components/ui/input';
 
 export function Footer() {
   return (
-    <footer className="text-white">
+    <footer>
       {/* Hero Image Section */}
       <div className="relative h-[500px] md:h-[600px] w-full overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&q=80"
-          alt="Modern luxury home"
+          src="/footer-family-outdoors.jpg"
+          alt="A father outside his home with his two young children"
           fill
           className="object-cover"
-          priority
         />
 
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/80" />
+        {/* Warm scrim, capped under the 35% ceiling (see design.md - D4) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-foreground/20 via-foreground/25 to-foreground/35" />
 
         {/* Content Overlay */}
         <div className="relative h-full mx-auto max-w-7xl px-6 flex items-center">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full items-center">
             {/* Left Side - Main Heading */}
             <div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                Find Your Perfect Property
+              <h2 className="rounded-3xl bg-background/90 p-6 text-4xl md:text-5xl font-semibold text-foreground leading-tight shadow-lg backdrop-blur-sm md:p-8">
+                Let’s Find Your Family a Home
               </h2>
             </div>
 
             {/* Right Side - Description and CTA */}
-            <div className="flex flex-col gap-6">
-              <p className="text-base md:text-lg text-white/90 max-w-md">
-                Looking for your dream home? We make property searching easy and stress-free! With our user-friendly
-                platform and expert agents.
+            <div className="flex flex-col gap-6 rounded-3xl bg-background/90 p-6 shadow-lg backdrop-blur-sm md:p-8">
+              <p className="text-base md:text-lg text-muted-foreground max-w-md">
+                Tell me what matters most to your family — the schools, the neighborhood, the space your kids need.
+                I’ll take it from there.
               </p>
               <div>
-                <Button size="lg" className="bg-white text-zinc-900 hover:bg-white/90 font-medium">
-                  Explore Listings
+                <Button asChild size="lg" className="w-fit font-medium">
+                  <Link href="/contact">Start the Conversation</Link>
                 </Button>
               </div>
             </div>
@@ -46,7 +45,7 @@ export function Footer() {
       </div>
 
       {/* Footer Section */}
-      <div className="bg-zinc-900">
+      <div className="bg-foreground">
         <div className="mx-auto max-w-7xl px-6 py-16">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12">
             {/* Brand Section */}
@@ -56,32 +55,32 @@ export function Footer() {
                   <Image src="/logo.png" alt="Real Estate Logo" fill className="object-contain" />
                 </div>
               </Link>
-              <p className="mt-4 text-sm text-zinc-400 max-w-xs">
+              <p className="mt-4 text-sm text-background/70 max-w-xs">
                 Helping you find the perfect home, every step of the way.
               </p>
             </div>
 
             {/* Company Links */}
             <div className="lg:col-span-2">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Company</h3>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-background">Company</h3>
               <ul className="mt-4 space-y-3">
                 <li>
-                  <Link href="/" className="text-sm text-zinc-400 transition-colors hover:text-white">
+                  <Link href="/" className="text-sm text-background/70 transition-colors hover:text-background">
                     Home
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about" className="text-sm text-zinc-400 transition-colors hover:text-white">
+                  <Link href="/about" className="text-sm text-background/70 transition-colors hover:text-background">
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="text-sm text-zinc-400 transition-colors hover:text-white">
+                  <Link href="/contact" className="text-sm text-background/70 transition-colors hover:text-background">
                     Contact Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="/listings" className="text-sm text-zinc-400 transition-colors hover:text-white">
+                  <Link href="/listings" className="text-sm text-background/70 transition-colors hover:text-background">
                     Listings
                   </Link>
                 </li>
@@ -90,20 +89,20 @@ export function Footer() {
 
             {/* Resources Links */}
             <div className="lg:col-span-2">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Resources</h3>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-background">Resources</h3>
               <ul className="mt-4 space-y-3">
                 <li>
-                  <Link href="/guide" className="text-sm text-zinc-400 transition-colors hover:text-white">
+                  <Link href="/guide" className="text-sm text-background/70 transition-colors hover:text-background">
                     Style Guide
                   </Link>
                 </li>
                 <li>
-                  <Link href="/licenses" className="text-sm text-zinc-400 transition-colors hover:text-white">
+                  <Link href="/licenses" className="text-sm text-background/70 transition-colors hover:text-background">
                     Licenses
                   </Link>
                 </li>
                 <li>
-                  <Link href="/changelog" className="text-sm text-zinc-400 transition-colors hover:text-white">
+                  <Link href="/changelog" className="text-sm text-background/70 transition-colors hover:text-background">
                     Changelog
                   </Link>
                 </li>
@@ -112,15 +111,16 @@ export function Footer() {
 
             {/* Newsletter Section */}
             <div className="lg:col-span-4">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Subscribe for Updates</h3>
-              <p className="mt-4 text-sm text-zinc-400">Get the latest news and updates directly in your inbox.</p>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-background">Subscribe for Updates</h3>
+              <p className="mt-4 text-sm text-background/70">Get the latest news and updates directly in your inbox.</p>
               <form className="mt-4 flex gap-2">
                 <Input
                   type="email"
                   placeholder="Enter your email"
-                  className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500 focus-visible:ring-zinc-600"
+                  aria-label="Email address"
+                  className="bg-background/10 border-background/40 text-background placeholder:text-background/60"
                 />
-                <Button type="submit" variant="default" className="bg-white text-zinc-900 hover:bg-zinc-100">
+                <Button type="submit" className="bg-background text-foreground hover:bg-background/90">
                   Send
                 </Button>
               </form>
@@ -128,8 +128,8 @@ export function Footer() {
           </div>
 
           {/* Bottom Bar */}
-          <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-zinc-800 pt-8 md:flex-row">
-            <p className="text-sm text-zinc-400">{new Date().getFullYear()} Real Estate. All rights reserved.</p>
+          <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-background/20 pt-8 md:flex-row">
+            <p className="text-sm text-background/70">{new Date().getFullYear()} Real Estate. All rights reserved.</p>
 
             {/* Social Media Icons */}
             <div className="flex items-center gap-4">
@@ -137,7 +137,7 @@ export function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-400 transition-colors hover:text-white"
+                className="text-background/70 transition-colors hover:text-background"
                 aria-label="Twitter"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -148,7 +148,7 @@ export function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-400 transition-colors hover:text-white"
+                className="text-background/70 transition-colors hover:text-background"
                 aria-label="Facebook"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -159,7 +159,7 @@ export function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-400 transition-colors hover:text-white"
+                className="text-background/70 transition-colors hover:text-background"
                 aria-label="Instagram"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -170,7 +170,7 @@ export function Footer() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-400 transition-colors hover:text-white"
+                className="text-background/70 transition-colors hover:text-background"
                 aria-label="LinkedIn"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">

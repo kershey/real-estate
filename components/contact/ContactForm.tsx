@@ -56,7 +56,7 @@ export function ContactForm() {
   });
 
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-white to-stone-100/50">
+    <section className="py-24 md:py-32 bg-gradient-to-b from-background to-muted">
       <div className="mx-auto max-w-4xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -65,10 +65,10 @@ export function ContactForm() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-stone-900">
-            I'd Love to <span className="italic font-light text-stone-600">Hear From You</span>
+          <h2 className="text-4xl md:text-5xl font-semibold mb-4 text-foreground">
+            I'd Love to <span className="italic font-light text-muted-foreground">Hear From You</span>
           </h2>
-          <p className="text-lg text-stone-700 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Tell me about your family and what you're looking for in a home. Whether you're just
             starting to explore or ready to make a move, I'm here to help every step of the way.
           </p>
@@ -80,7 +80,7 @@ export function ContactForm() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <form onSubmit={handleSubmit(onSubmit)} className="bg-white border border-stone-200 rounded-3xl p-8 md:p-12 space-y-6 shadow-lg">
+          <form onSubmit={handleSubmit(onSubmit)} className="bg-card border border-border rounded-3xl p-8 md:p-12 space-y-6 shadow-lg">
             {/* Success/Error Message */}
             {result && (
               <motion.div
@@ -102,7 +102,7 @@ export function ContactForm() {
             {/* Name and Email Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-slate-900 font-medium">
+                <Label htmlFor="name" className="text-foreground font-medium">
                   Full Name
                 </Label>
                 <Input
@@ -110,13 +110,13 @@ export function ContactForm() {
                   type="text"
                   placeholder="Your name"
                   {...register('name', { required: 'Name is required' })}
-                  className="bg-stone-50 border-stone-300 focus:border-stone-500 h-12 focus:ring-stone-200"
+                  className="bg-background h-12"
                 />
-                {errors.name && <p className="text-sm text-red-600">{errors.name.message}</p>}
+                {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-slate-900 font-medium">
+                <Label htmlFor="email" className="text-foreground font-medium">
                   Email Address
                 </Label>
                 <Input
@@ -130,16 +130,16 @@ export function ContactForm() {
                       message: 'Invalid email address',
                     },
                   })}
-                  className="bg-stone-50 border-stone-300 focus:border-stone-500 h-12 focus:ring-stone-200"
+                  className="bg-background h-12"
                 />
-                {errors.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
+                {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
               </div>
             </div>
 
             {/* Phone and Subject Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="phone" className="text-slate-900 font-medium">
+                <Label htmlFor="phone" className="text-foreground font-medium">
                   Phone Number
                 </Label>
                 <Input
@@ -147,13 +147,13 @@ export function ContactForm() {
                   type="tel"
                   placeholder="(407) 555-0123"
                   {...register('phone', { required: 'Phone number is required' })}
-                  className="bg-stone-50 border-stone-300 focus:border-stone-500 h-12 focus:ring-stone-200"
+                  className="bg-background h-12"
                 />
-                {errors.phone && <p className="text-sm text-red-600">{errors.phone.message}</p>}
+                {errors.phone && <p className="text-sm text-destructive">{errors.phone.message}</p>}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="subject" className="text-slate-900 font-medium">
+                <Label htmlFor="subject" className="text-foreground font-medium">
                   Subject
                 </Label>
                 <Input
@@ -161,15 +161,15 @@ export function ContactForm() {
                   type="text"
                   placeholder="Looking for a family home"
                   {...register('subject', { required: 'Subject is required' })}
-                  className="bg-stone-50 border-stone-300 focus:border-stone-500 h-12 focus:ring-stone-200"
+                  className="bg-background h-12"
                 />
-                {errors.subject && <p className="text-sm text-red-600">{errors.subject.message}</p>}
+                {errors.subject && <p className="text-sm text-destructive">{errors.subject.message}</p>}
               </div>
             </div>
 
             {/* Message */}
             <div className="space-y-2">
-              <Label htmlFor="message" className="text-slate-900 font-medium">
+              <Label htmlFor="message" className="text-foreground font-medium">
                 Message
               </Label>
               <Textarea
@@ -183,9 +183,9 @@ export function ContactForm() {
                     message: 'Message must be at least 10 characters',
                   },
                 })}
-                className="bg-stone-50 border-stone-300 focus:border-stone-500 resize-none focus:ring-stone-200"
+                className="bg-background resize-none"
               />
-              {errors.message && <p className="text-sm text-red-600">{errors.message.message}</p>}
+              {errors.message && <p className="text-sm text-destructive">{errors.message.message}</p>}
             </div>
 
             {/* Honeypot field for spam protection */}
@@ -201,7 +201,7 @@ export function ContactForm() {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full h-12 bg-gradient-to-r from-stone-700 to-stone-800 text-white hover:from-stone-800 hover:to-stone-900 font-medium text-base shadow-md hover:shadow-lg transition-all"
+              className="w-full h-12 font-medium text-base shadow-md hover:shadow-lg transition-all"
             >
               {isSubmitting ? (
                 <>
@@ -214,7 +214,7 @@ export function ContactForm() {
             </Button>
 
             {/* Privacy Notice */}
-            <p className="text-xs text-stone-600 text-center">
+            <p className="text-xs text-muted-foreground text-center">
               Your privacy matters. I will never share your family's information with anyone.
             </p>
           </form>

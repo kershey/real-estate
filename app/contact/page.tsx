@@ -5,13 +5,14 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { AreasSection } from "@/components/contact/AreasSection";
 
 export const metadata = {
-  title: "Contact | Real Estate Platform",
-  description: "Get in touch with your trusted real estate professional serving Central Florida",
+  title: "Contact",
+  description:
+    "Get in touch about finding a family home in Orlando and Central Florida.",
 };
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <Header />
       <main className="pt-32">
         <ContactHero />

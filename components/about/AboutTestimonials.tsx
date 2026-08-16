@@ -3,49 +3,54 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import Image from "next/image";
+import Link from "next/link";
 
-const testimonials = [
+/*
+ * MOCK CONTENT - placeholder testimonials awaiting real client quotes.
+ * Personas follow the audience-voice spec: families who bought or sold a home
+ * to live in. No entry opens with a dollar figure. The people are invented.
+ */
+const MOCK_TESTIMONIALS = [
   {
     quote:
-      "Working with this agent was the best decision we made. Their knowledge of the market and negotiation skills saved us over $50,000 on our dream home.",
-    author: "Sarah & Michael Chen",
-    role: "Home Buyers",
+      "We had a two-year-old and another on the way, and no idea where to start. We got a shortlist built around school zoning and nap-friendly commutes, not just square footage.",
+    author: "Danielle & Marcus Reyes",
+    role: "First-time buyers, Winter Garden",
     rating: 5,
   },
   {
     quote:
-      "Exceptional service from start to finish. Sold our property in just 12 days for above asking price. Couldn't have asked for a better experience.",
-    author: "David Rodriguez",
-    role: "Property Seller",
+      "Selling with three kids in the house sounded impossible. Showings were scheduled around school pickup and bedtime, and somehow the place still looked presentable.",
+    author: "The Okafor family",
+    role: "Sold and moved up, Lake Nona",
     rating: 5,
   },
   {
     quote:
-      "As first-time buyers, we were nervous about the process. They guided us every step of the way with patience and expertise. Forever grateful!",
-    author: "Emily Thompson",
-    role: "First-Time Buyer",
+      "We were talked out of a house we loved. The street backed onto a road that would have been miserable with toddlers. Annoying at the time; obviously right in hindsight.",
+    author: "Priya & Sam Whitfield",
+    role: "Relocated to Kissimmee",
     rating: 5,
   },
   {
     quote:
-      "Built my entire investment portfolio with their guidance. Their market insights and investment strategies have been invaluable.",
-    author: "James Park",
-    role: "Real Estate Investor",
+      "Every question we asked got a straight answer, including the ones we felt silly asking. Nobody made us feel like we should already know how any of this worked.",
+    author: "Aisha Bennett",
+    role: "First-time buyer, Orlando",
     rating: 5,
   },
   {
     quote:
-      "The level of professionalism and attention to detail is unmatched. They made our relocation seamless and stress-free.",
-    author: "Lisa Anderson",
-    role: "Corporate Relocation",
+      "Moving from out of state with kids already in school meant we bought on video walkthroughs. The notes on each neighborhood were honest about the downsides too.",
+    author: "The Alvarez family",
+    role: "Relocated from Ohio, Winter Park",
     rating: 5,
   },
   {
     quote:
-      "Outstanding communication and transparency throughout. They truly care about their clients and it shows in every interaction.",
-    author: "Robert Williams",
-    role: "Luxury Home Buyer",
+      "Our daughter uses a wheelchair, so single-level living and door widths mattered more than anything else. That was understood immediately and never treated as a hassle.",
+    author: "Tom & Rachel Byrne",
+    role: "Bought in Windermere",
     rating: 5,
   },
 ];
@@ -55,17 +60,7 @@ export function AboutTestimonials() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-slate-50 relative overflow-hidden">
-      {/* Background decorative element */}
-      <div className="absolute left-0 bottom-0 w-1/2 h-1/3 opacity-[0.04]">
-        <Image
-          src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1200&q=80"
-          alt="Modern Home Interior"
-          fill
-          className="object-cover"
-        />
-      </div>
-
+    <section ref={ref} className="py-24 md:py-32 bg-muted relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         {/* Header */}
         <motion.div
@@ -74,21 +69,20 @@ export function AboutTestimonials() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <span className="text-sm font-medium text-slate-500 tracking-wider uppercase">
+          <span className="text-sm font-medium text-muted-foreground tracking-wider uppercase">
             Client Testimonials
           </span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold">
+          <h2 className="mt-4 text-4xl md:text-5xl font-semibold">
             What <span className="italic font-light">Clients</span> Say
           </h2>
-          <p className="mt-6 text-xl text-slate-600 max-w-3xl">
-            Real feedback from real people who've experienced the difference of
-            working with a dedicated professional.
+          <p className="mt-6 text-xl text-muted-foreground max-w-3xl">
+            Families who were, not that long ago, exactly where you are now.
           </p>
         </motion.div>
 
         {/* Bento-style grid layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => {
+          {MOCK_TESTIMONIALS.map((testimonial, index) => {
             // Create varied heights for masonry effect
             const sizes = [
               "md:row-span-1",
@@ -111,14 +105,14 @@ export function AboutTestimonials() {
               >
                 <motion.div
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                  className="h-full bg-white rounded-2xl p-8 shadow-sm border border-slate-100 flex flex-col"
+                  className="h-full bg-card rounded-2xl p-8 shadow-sm border border-border flex flex-col"
                 >
                   {/* Stars */}
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <svg
                         key={i}
-                        className="w-5 h-5 text-black"
+                        className="w-5 h-5 text-foreground"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -128,16 +122,16 @@ export function AboutTestimonials() {
                   </div>
 
                   {/* Quote */}
-                  <blockquote className="flex-1 text-slate-700 leading-relaxed mb-6">
+                  <blockquote className="flex-1 text-foreground leading-relaxed mb-6">
                     "{testimonial.quote}"
                   </blockquote>
 
                   {/* Author */}
-                  <div className="pt-6 border-t border-slate-100">
-                    <div className="font-bold text-slate-900">
+                  <div className="pt-6 border-t border-border">
+                    <div className="font-semibold text-foreground">
                       {testimonial.author}
                     </div>
-                    <div className="text-sm text-slate-500 mt-1">
+                    <div className="text-sm text-muted-foreground mt-1">
                       {testimonial.role}
                     </div>
                   </div>
@@ -154,17 +148,22 @@ export function AboutTestimonials() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="mt-16 text-center"
         >
-          <div className="inline-block bg-white rounded-2xl p-8 shadow-lg">
-            <p className="text-lg text-slate-700 mb-6 max-w-2xl">
-              Ready to start your real estate journey with a trusted partner?
+          <div className="inline-block bg-card rounded-2xl p-8 shadow-lg">
+            <p className="text-lg text-foreground mb-6 max-w-2xl">
+              Thinking about a move? Tell me what your family needs.
             </p>
-            <motion.button
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-black text-white px-8 py-4 rounded-xl font-medium text-lg hover:bg-slate-800 transition-colors"
+              className="inline-block"
             >
-              Schedule a Consultation
-            </motion.button>
+              <Link
+                href="/contact"
+                className="inline-block bg-primary text-primary-foreground px-8 py-4 rounded-xl font-medium text-lg hover:bg-primary/90 transition-colors"
+              >
+                Start the Conversation
+              </Link>
+            </motion.div>
           </div>
         </motion.div>
       </div>
