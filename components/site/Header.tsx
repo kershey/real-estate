@@ -68,7 +68,7 @@ export function Header() {
         <div className="container-site flex h-[4.5rem] items-center justify-between gap-4 xl:gap-6">
           <Logo />
 
-          <nav aria-label="Primary" className="hidden items-center gap-4 md:flex lg:gap-5 xl:gap-8">
+          <nav aria-label="Primary" className="hidden items-center gap-5 lg:flex xl:gap-8">
             {nav.map((item) => {
               const active =
                 item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
@@ -97,16 +97,16 @@ export function Header() {
                 Search Homes
               </Link>
             </Button>
-            <div className="hidden lg:block">
+            <div>
               <ScheduleButton size="default" className="h-10 px-3 text-xs font-semibold uppercase tracking-[0.06em] xl:px-4 xl:tracking-[0.1em]">
                 Schedule a Call
               </ScheduleButton>
             </div>
           </div>
 
-          {/* Mobile */}
-          <div className="flex items-center gap-2 md:hidden">
-            <Button asChild variant="ghost" size="icon" aria-label={`Call ${site.phone}`}>
+          {/* Phone and tablet */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <Button asChild variant="ghost" size="icon" aria-label={`Call ${site.phone}`} className="md:hidden">
               <a href={site.phoneHref} data-analytics="phone-click">
                 <Phone />
               </a>

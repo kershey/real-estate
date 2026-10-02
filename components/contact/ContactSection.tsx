@@ -7,13 +7,21 @@ import { isExternal, scheduleHref, site } from "@/lib/site";
 
 export function ContactSection() {
   const schedule = scheduleHref();
-  const items = [
+  const items: { Icon: typeof Phone; title: string; body: React.ReactNode; href?: string; analytics?: string }[] = [
     {
       Icon: Phone,
       title: site.phone,
-      body: "Call or Text",
-      href: site.phoneHref,
-      analytics: "phone-click",
+      body: (
+        <>
+          <a href={site.phoneHref} className="hover:text-gold-ink" data-analytics="phone-click">
+            Call
+          </a>{" "}
+          or{" "}
+          <a href={site.smsHref} className="hover:text-gold-ink" data-analytics="text-click">
+            Text
+          </a>
+        </>
+      ),
     },
     { Icon: Mail, title: site.email, body: "Email Me", href: `mailto:${site.email}` },
     {

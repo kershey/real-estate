@@ -112,15 +112,18 @@ function CommunityPanel({ community }: { community: Community }) {
             Search {community.name} Homes
           </Link>
         </Button>
-        <Link
-          href={`/lets-talk?about=${encodeURIComponent(community.name)}#contact`}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-gold-ink"
-          data-analytics="community-ask"
-        >
-          <MessageCircle className="size-4 text-gold-ink" aria-hidden="true" />
-          {community.ask} Ask Paul
-          <ArrowRight className="size-4" aria-hidden="true" />
-        </Link>
+        <div className="sm:text-right">
+          <p className="text-sm text-muted-foreground">{community.ask}</p>
+          <Link
+            href={`/lets-talk?about=${encodeURIComponent(community.name)}#contact`}
+            className="mt-1 inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-gold-ink"
+            data-analytics="community-ask"
+          >
+            <MessageCircle className="size-4 text-gold-ink" aria-hidden="true" />
+            Ask Paul About {community.name}
+            <ArrowRight className="size-4" aria-hidden="true" />
+          </Link>
+        </div>
       </div>
     </article>
   );
