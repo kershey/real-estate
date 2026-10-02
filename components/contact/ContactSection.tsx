@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import Image from "next/image";
 import { CalendarDays, Mail, MapPin, Phone, Users } from "lucide-react";
 import { ContactForm } from "@/components/contact/ContactForm";
@@ -42,9 +41,7 @@ export function ContactSection() {
             Fill out the form below and I&rsquo;ll get back to you as soon as possible.
           </p>
           <div className="mt-10">
-            <Suspense fallback={<div className="h-[32rem]" aria-hidden="true" />}>
-              <ContactForm />
-            </Suspense>
+            <ContactForm />
           </div>
         </FadeIn>
 

@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Suspense, useEffect, useState } from "react";
+import { Controller, useForm, type UseFormSetValue } from "react-hook-form";
 import { useSearchParams } from "next/navigation";
 import useWeb3Forms from "@web3forms/react";
 import { AlertCircle, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
@@ -42,10 +42,6 @@ const interests = [...pathways.map((p) => p.interest), "Something Else"];
  * the form pre-filled.
  */
 export function ContactForm() {
-  const params = useSearchParams();
-  const presetInterest = params.get("interest") ?? "";
-  const about = params.get("about");
-
   const {
     register,
     control,
@@ -54,16 +50,8 @@ export function ContactForm() {
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
-    defaultValues: {
-      interest: interests.includes(presetInterest) ? presetInterest : "",
-      message: about ? `I'd like to learn more about ${about}.` : "",
-    },
+    defaultValues: { interest: "", message: "" },
   });
-
-  useEffect(() => {
-    if (interests.includes(presetInterest)) setValue("interest", presetInterest);
-    if (about) setValue("message", `I'd like to learn more about ${about}.`);
-  }, [presetInterest, about, setValue]);
 
   const [status, setStatus] = useState<{ ok: boolean; text: string } | null>(null);
 
@@ -93,6 +81,9 @@ export function ContactForm() {
       className="space-y-5"
       aria-describedby={status ? "form-status" : undefined}
     >
+      <Suspense fallback={null}>
+        <PrefillFromQuery setValue={setValue} />
+      </Suspense>
       {status && (
         <div
           id="form-status"
@@ -221,6 +212,21 @@ export function ContactForm() {
       </Button>
     </form>
   );
+}
+
+/**
+ * Applies ?interest= and ?about= from pathway and community links. Lives in
+ * its own Suspense boundary so the form itself is server-rendered.
+ */
+function PrefillFromQuery({ setValue }: { setValue: UseFormSetValue<FormData> }) {
+  const params = useSearchParams();
+  const presetInterest = params.get("interest") ?? "";
+  const about = params.get("about");
+  useEffect(() => {
+    if (interests.includes(presetInterest)) setValue("interest", presetInterest);
+    if (about) setValue("message", `I'd like to learn more about ${about}.`);
+  }, [presetInterest, about, setValue]);
+  return null;
 }
 
 function Field({

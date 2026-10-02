@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { ArrowRight, Search } from "lucide-react";
@@ -32,7 +32,6 @@ const counts = ["Any", "1+", "2+", "3+", "4+", "5+"];
  * button, and the brief's "no forced registration" rule is honored.
  */
 export function HomeSearch() {
-  const params = useSearchParams();
   const [mode, setMode] = useState<Mode>("Buy");
 
   return (
@@ -83,13 +82,9 @@ export function HomeSearch() {
               <Label htmlFor="search-q" className="sr-only">
                 City, neighborhood, ZIP or school
               </Label>
-              <Input
-                id="search-q"
-                name="q"
-                defaultValue={params.get("q") ?? ""}
-                placeholder="City, Neighborhood, ZIP or School"
-                className="h-11 border-0 bg-transparent px-2 text-base shadow-none placeholder:text-foreground/60 focus-visible:ring-0 md:text-sm"
-              />
+              <Suspense fallback={<QueryInput />}>
+                <QueryInputFromUrl />
+              </Suspense>
             </div>
             <SearchSelect name="price" label="Price" options={prices} />
             <SearchSelect name="beds" label="Beds" options={counts} />
@@ -126,6 +121,27 @@ export function HomeSearch() {
       </div>
     </section>
   );
+}
+
+const queryInputClass =
+  "h-11 border-0 bg-transparent px-2 text-base shadow-none placeholder:text-foreground/60 focus-visible:ring-0 md:text-sm";
+
+function QueryInput({ defaultValue = "" }: { defaultValue?: string }) {
+  return (
+    <Input
+      id="search-q"
+      name="q"
+      defaultValue={defaultValue}
+      placeholder="City, Neighborhood, ZIP or School"
+      className={queryInputClass}
+    />
+  );
+}
+
+/** Pre-fills the query from ?q= (community "Search [City] Homes" links). */
+function QueryInputFromUrl() {
+  const params = useSearchParams();
+  return <QueryInput defaultValue={params.get("q") ?? ""} />;
 }
 
 function SearchSelect({ name, label, options }: { name: string; label: string; options: string[] }) {

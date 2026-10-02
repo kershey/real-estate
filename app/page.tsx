@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CtaBand } from "@/components/site/CtaBand";
@@ -15,9 +14,7 @@ export default function HomePage() {
       <main className="w-full max-w-full flex-1 overflow-x-hidden">
         <Hero />
         <Pathways />
-        <Suspense fallback={null}>
-          <HomeSearch />
-        </Suspense>
+        <HomeSearch />
         <ExploreTeaser />
         <MeetPaul />
         <CtaBand

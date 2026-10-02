@@ -109,7 +109,7 @@ function CommunityPanel({ community }: { community: Community }) {
         <Button asChild size="cta" className="h-auto min-h-12 whitespace-normal py-3 text-center">
           <Link href={`/?q=${encodeURIComponent(community.name)}#search`} data-analytics="community-search">
             <Search aria-hidden="true" />
-            Search {community.shortName ?? community.name} Homes
+            Search {community.name} Homes
           </Link>
         </Button>
         <Link
