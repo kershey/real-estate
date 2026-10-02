@@ -13,14 +13,13 @@ assets that were not in the email.
 | `paul/paul-headshot.jpg` | Home "Meet Paul" |
 | `paul/paul-construction.jpg` | About "My Story", Home pathway card |
 | `paul/client-moment-1..6.jpg` | About "Real Clients. Real Moments.", Home pathway cards |
+| `paul/logo.png`, `paul/logo-mark.png` | Footer (full logo), header and menu (monogram); `app/icon.png` is the browser tab icon. Supplied as JPEG on white; a transparent SVG would let the mark sit on navy too. |
 
 ## Still needed from the client
 
-1. **Paul E. logo** (the PE monogram) as SVG or high-res PNG on transparent
-   background. `components/site/Logo.tsx` currently draws a typographic stand-in.
-2. **Dalton Wade horizontal logo** for the footer. The footer shows the
+1. **Dalton Wade horizontal logo** for the footer. The footer shows the
    brokerage name in type until the asset arrives.
-3. **Community photography**, one landscape photo per community, ideally
+2. **Community photography**, one landscape photo per community, ideally
    1600 x 1200 or larger. Drop each file in `public/communities/` and set
    `image` and `imageAlt` on the matching entry in `lib/communities.ts`.
    Tiles render a designed navy panel until a photo is set, so the site works
@@ -29,7 +28,7 @@ assets that were not in the email.
    Orlando, Kissimmee, Lake Nona, Apopka, St. Cloud, Clermont, Horizon West,
    Windermere / Dr. Phillips, Davenport, Oviedo, Sanford, Winter Garden.
 
-4. **Optional:** a wide Central Florida skyline or lakefront photo for the
+3. **Optional:** a wide Central Florida skyline or lakefront photo for the
    Explore page hero, which is currently typographic on navy.
 
 ## Art direction (from the Site Overview)

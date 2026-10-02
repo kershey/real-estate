@@ -1,76 +1,66 @@
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { site } from "@/lib/site";
 
 interface LogoProps {
   className?: string;
-  /** Hide the wordmark and keep only the monogram. */
+  /**
+   * `lockup` (default): the PE monogram beside the wordmark, for the header.
+   * `stacked`: the client's full logo artwork, for the footer.
+   */
+  variant?: "lockup" | "stacked";
+  /** Monogram only, no wordmark. */
   compact?: boolean;
-  /** Use on navy surfaces. */
-  inverted?: boolean;
 }
 
 /**
- * Typographic "PE" monogram with a gold roofline.
- *
- * The client's logo file was not included in the brief; this mark follows
- * the same idea (serif P and E under a roof) so the real asset can replace
- * the SVG without touching layout.
+ * Paul E. the Realtor brand mark. Artwork is the client's supplied logo
+ * (public/paul/logo.png) and a crop of its monogram (logo-mark.png). The
+ * logo ships on a white background, so it sits on white surfaces only.
  */
-export function Logo({ className, compact = false, inverted = false }: LogoProps) {
-  const ink = inverted ? "text-white" : "text-navy";
+export function Logo({ className, variant = "lockup", compact = false }: LogoProps) {
+  if (variant === "stacked") {
+    return (
+      <Link
+        href="/"
+        aria-label={`${site.wordmark} home`}
+        className={cn("inline-block bg-white", className)}
+      >
+        <Image
+          src="/paul/logo.png"
+          alt={`${site.wordmark}. ${site.tagline}`}
+          width={1096}
+          height={674}
+          sizes="(min-width: 768px) 14rem, 12rem"
+          className="h-auto w-48 md:w-56"
+        />
+      </Link>
+    );
+  }
+
   return (
     <Link
       href="/"
       aria-label={`${site.wordmark} home`}
-      className={cn("group inline-flex items-center gap-3", className)}
+      className={cn("inline-flex items-center gap-2.5", className)}
     >
-      <svg
-        viewBox="0 0 56 56"
-        width="44"
-        height="44"
+      <Image
+        src="/paul/logo-mark.png"
+        alt=""
         aria-hidden="true"
-        className="shrink-0"
-      >
-        <path
-          d="M6 24 L28 7 L50 24"
-          fill="none"
-          stroke="var(--gold)"
-          strokeWidth="3"
-          strokeLinecap="square"
-          strokeLinejoin="miter"
-        />
-        <rect x="38" y="12" width="5" height="9" fill="var(--gold)" />
-        <text
-          x="28"
-          y="50"
-          textAnchor="middle"
-          fontFamily="var(--font-libre-baskerville), Georgia, serif"
-          fontSize="30"
-          fontWeight="700"
-          letterSpacing="-1"
-          fill="currentColor"
-          className={ink}
-        >
-          PE
-        </text>
-      </svg>
+        width={604}
+        height={450}
+        sizes="4rem"
+        priority
+        className="h-11 w-auto shrink-0 xl:h-12"
+      />
       {!compact && (
         <span className="flex flex-col leading-none">
-          <span
-            className={cn(
-              "font-serif text-[1.2rem] tracking-tight xl:text-[1.35rem]",
-              ink
-            )}
-          >
-            Paul<span className="text-gold-ink">E</span>theRealtor
+          <span className="font-serif text-[1.2rem] tracking-tight text-navy xl:text-[1.35rem]">
+            PaulEthe<span className="text-gold-ink">Realtor</span>
           </span>
-          <span
-            className={cn(
-              "mt-1 hidden whitespace-nowrap text-[0.5625rem] xl:block font-semibold uppercase tracking-[0.18em]",
-              inverted ? "text-white/70" : "text-muted-foreground"
-            )}
-          >
+          <span className="mt-1 hidden whitespace-nowrap text-[0.5625rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground xl:block">
             {site.tagline}
           </span>
         </span>

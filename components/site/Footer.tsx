@@ -16,7 +16,7 @@ export function Footer() {
     <footer className="border-t bg-card">
       <div className="container-site grid gap-12 py-16 md:grid-cols-12 md:gap-8">
         <div className="md:col-span-4">
-          <Logo />
+          <Logo variant="stacked" className="-ml-2" />
           <p className="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-navy">
             {site.name} | {site.title}
           </p>
