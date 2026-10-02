@@ -1,52 +1,40 @@
-# Photography for this site
+# Photography for PaulEtheRealtor.com
 
-Every image here is **placeholder stock**. It satisfies the art direction, but
-the strongest version of this site uses real local photography — the agent's
-own portrait first, then real client families where permission exists.
+All of Paul's own photography from the brief is in `public/paul/` and is already
+wired into the pages. What is still missing is place photography and brand
+assets that were not in the email.
 
-## Before sourcing anything, read the rules
+## In use now
 
-The binding rules live in
-`openspec/changes/warm-family-repositioning/specs/site-imagery/spec.md`.
-The working brief, including a per-slot shot list, is in the same change's
-`design.md` under **D4 — Art direction brief**.
+| File | Used by |
+|---|---|
+| `paul/paul-tan-jacket.jpg` | Home hero, Let's Talk hero |
+| `paul/paul-blue-jacket.jpg` | About hero, Let's Talk sidebar |
+| `paul/paul-headshot.jpg` | Home "Meet Paul" |
+| `paul/paul-construction.jpg` | About "My Story", Home pathway card |
+| `paul/client-moment-1..6.jpg` | About "Real Clients. Real Moments.", Home pathway cards |
 
-## The short version
+## Still needed from the client
 
-The buyer we are picturing is a couple in their early thirties with one or two
-young children, buying their first or second home in the $250k–$450k range in
-Central Florida.
+1. **Paul E. logo** (the PE monogram) as SVG or high-res PNG on transparent
+   background. `components/site/Logo.tsx` currently draws a typographic stand-in.
+2. **Dalton Wade horizontal logo** for the footer. The footer shows the
+   brokerage name in type until the asset arrives.
+3. **Community photography**, one landscape photo per community, ideally
+   1600 x 1200 or larger. Drop each file in `public/communities/` and set
+   `image` and `imageAlt` on the matching entry in `lib/communities.ts`.
+   Tiles render a designed navy panel until a photo is set, so the site works
+   either way.
 
-**Every photo must have:** warm natural daylight (morning or late afternoon), a
-home at a scale that buyer could afford, visible neighborhood or family context,
-and a warm color cast.
+   Orlando, Kissimmee, Lake Nona, Apopka, St. Cloud, Clermont, Horizon West,
+   Windermere / Dr. Phillips, Davenport, Oviedo, Sanford, Winter Garden.
 
-**No photo may contain:** infinity or resort pools, glass curtain walls,
-double-height architectural volumes, staged designer show-homes with no sign of
-life, aerial or gated-estate views, suited professionals shaking hands or
-celebrating over laptops, cool blue or monochrome grading, or dusk and twilight
-exteriors.
+4. **Optional:** a wide Central Florida skyline or lakefront photo for the
+   Explore page hero, which is currently typographic on navy.
 
-**Alt text** must describe the family or neighborhood context and must never use
-the words luxury, luxurious, premium, exclusive, estate, villa, upscale, or
-high-end.
+## Art direction (from the Site Overview)
 
-## Current files
-
-| File | Used by | Status |
-|---|---|---|
-| `hero-family-porch.jpg` | homepage hero | stock |
-| `interior-family-living.jpg` | homepage, "Room to Grow" | stock |
-| `footer-family-outdoors.jpg` | global footer | stock |
-| `offer-buying-porch.jpg` | services — buying | stock |
-| `offer-selling-garden-home.jpg` | services — selling | stock |
-| `offer-renting-living-room.jpg` | services — renting | stock |
-| `offer-first-time-starter-home.jpg` | services — first-time buyers | stock |
-| `property-family-home.jpg` | listing card 1 | stock |
-| `property-suburban-home.jpg` | listing card 2 | stock |
-| `property-starter-apartment.jpg` | listing card 3 | stock |
-| `agent-portrait-placeholder.jpg` | About hero | **replace first** — this is a stranger, not the agent |
-| `logo.png`, `logo-black.png` | header, footer | **replace** — still the placeholder "apex" mark |
-
-Keep this table current: the site should never carry an image nothing
-references, and nothing should reference an image that is not here.
+Photos should feel like Central Florida life: real neighborhoods, streets,
+architecture, parks, downtown areas, new-construction communities and
+lifestyle scenes. Avoid keys-in-hands, handshake stock photos, SOLD signs,
+private-jet imagery and unrelated mega-mansions.

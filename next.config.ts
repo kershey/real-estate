@@ -1,13 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-    ],
+  async redirects() {
+    return [
+      // The contact page moved to the brief's "Let's Talk" route.
+      { source: "/contact", destination: "/lets-talk", permanent: true },
+    ];
   },
 };
 

@@ -1,33 +1,45 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Fraunces } from "next/font/google";
+import { Inter, Libre_Baskerville, Caveat } from "next/font/google";
 import "./globals.css";
+import { site } from "@/lib/site";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Fonts per the client's Site Overview: Libre Baskerville for headlines,
+// Inter for body, menu and buttons. Caveat carries the short handwritten
+// accent lines the mockups place over hero photography.
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const libreBaskerville = Libre_Baskerville({
+  variable: "--font-libre-baskerville",
   subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
-// Humanist serif for headings. SOFT rounds the terminals and WONK enables
-// the friendlier italic forms - both dialled up to keep headings warm
-// rather than editorial. See design.md - D3.
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const caveat = Caveat({
+  variable: "--font-caveat",
   subsets: ["latin"],
-  axes: ["SOFT", "WONK", "opsz"],
+  weight: ["500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: {
-    default: "Family Homes in Central Florida",
-    template: "%s | Family Homes in Central Florida",
+    default: `${site.name} | Central Florida Real Estate`,
+    template: `%s | ${site.name}`,
   },
   description:
-    "Helping families with children find a home in Orlando and Central Florida - good schools, safe streets, and room to grow.",
+    "Paul E. helps buyers, sellers and relocating clients navigate Central Florida with confidence. New construction, buying, selling and relocation guidance across Orlando and beyond.",
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    images: [{ url: "/paul/paul-tan-jacket.jpg" }],
+  },
 };
 
 export default function RootLayout({
@@ -38,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}
+        className={`${inter.variable} ${libreBaskerville.variable} ${caveat.variable} min-h-screen antialiased`}
       >
         {children}
       </body>

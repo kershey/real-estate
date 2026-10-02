@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ReactNode } from 'react';
 
 interface StaggerContainerProps {
@@ -9,16 +9,19 @@ interface StaggerContainerProps {
   className?: string;
 }
 
+const easeOutExpo = [0.16, 1, 0.3, 1] as const;
+
 export function StaggerContainer({
   children,
   staggerDelay = 0.1,
   className
 }: StaggerContainerProps) {
+  const reduce = useReducedMotion();
   return (
     <motion.div
-      initial="hidden"
+      initial={reduce ? 'visible' : 'hidden'}
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, amount: 0.15 }}
       variants={{
         visible: {
           transition: {
@@ -36,16 +39,18 @@ export function StaggerContainer({
 interface StaggerItemProps {
   children: ReactNode;
   className?: string;
+  /** Vertical travel in px. */
+  y?: number;
 }
 
-export function StaggerItem({ children, className }: StaggerItemProps) {
+export function StaggerItem({ children, className, y = 28 }: StaggerItemProps) {
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 20 },
+        hidden: { opacity: 0, y },
         visible: { opacity: 1, y: 0 },
       }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.8, ease: easeOutExpo }}
       className={className}
     >
       {children}

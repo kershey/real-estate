@@ -1,225 +1,255 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import useWeb3Forms from '@web3forms/react';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useSearchParams } from "next/navigation";
+import useWeb3Forms from "@web3forms/react";
+import { AlertCircle, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { pathways } from "@/lib/pathways";
+import { site } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 interface FormData {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
-  subject: string;
+  interest: string;
   message: string;
   botcheck: boolean;
 }
 
+const interests = [...pathways.map((p) => p.interest), "Something Else"];
+
+/**
+ * Contact form per the Let's Talk copy: First Name, Last Name, Email, Phone,
+ * "I'm interested in" and Message. Submits through Web3Forms (existing
+ * integration) and can be pointed at a CRM later.
+ *
+ * Reads ?interest= and ?about= so pathway and community links arrive with
+ * the form pre-filled.
+ */
 export function ContactForm() {
+  const params = useSearchParams();
+  const presetInterest = params.get("interest") ?? "";
+  const about = params.get("about");
+
   const {
     register,
+    control,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitting },
-  } = useForm<FormData>();
+  } = useForm<FormData>({
+    defaultValues: {
+      interest: interests.includes(presetInterest) ? presetInterest : "",
+      message: about ? `I'd like to learn more about ${about}.` : "",
+    },
+  });
 
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [result, setResult] = useState<string>('');
+  useEffect(() => {
+    if (interests.includes(presetInterest)) setValue("interest", presetInterest);
+    if (about) setValue("message", `I'd like to learn more about ${about}.`);
+  }, [presetInterest, about, setValue]);
 
-  // Web3Forms access key from environment variable
-  const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
+  const [status, setStatus] = useState<{ ok: boolean; text: string } | null>(null);
 
-  const { submit: onSubmit } = useWeb3Forms({
-    access_key: accessKey,
+  const { submit } = useWeb3Forms({
+    access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "",
     settings: {
-      from_name: 'Real Estate Contact Form',
-      subject: 'New Contact Message from Real Estate Website',
+      from_name: `${site.wordmark} website`,
+      subject: "New inquiry from PaulEtheRealtor.com",
     },
-    onSuccess: msg => {
-      setIsSuccess(true);
-      setResult(msg);
-      reset();
-      // Auto-hide success message after 5 seconds
-      setTimeout(() => {
-        setIsSuccess(false);
-        setResult('');
-      }, 5000);
+    onSuccess: () => {
+      setStatus({ ok: true, text: "Thank you. Your message is on its way and I'll be in touch soon." });
+      reset({ interest: "", message: "" });
     },
-    onError: msg => {
-      setIsSuccess(false);
-      setResult(msg);
+    onError: () => {
+      setStatus({
+        ok: false,
+        text: `Something went wrong sending your message. Please call or text ${site.phone} instead.`,
+      });
     },
   });
 
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-background to-muted">
-      <div className="mx-auto max-w-4xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+    <form
+      onSubmit={handleSubmit((data) => submit(data))}
+      noValidate
+      className="space-y-5"
+      aria-describedby={status ? "form-status" : undefined}
+    >
+      {status && (
+        <div
+          id="form-status"
+          role="status"
+          className={cn(
+            "flex items-start gap-3 border p-4 text-sm",
+            status.ok
+              ? "border-green-200 bg-green-50 text-green-900"
+              : "border-red-200 bg-red-50 text-red-900"
+          )}
         >
-          <h2 className="text-4xl md:text-5xl font-semibold mb-4 text-foreground">
-            I'd Love to <span className="italic font-light text-muted-foreground">Hear From You</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Tell me about your family and what you're looking for in a home. Whether you're just
-            starting to explore or ready to make a move, I'm here to help every step of the way.
-          </p>
-        </motion.div>
+          {status.ok ? (
+            <CheckCircle2 className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+          ) : (
+            <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+          )}
+          <p>{status.text}</p>
+        </div>
+      )}
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <form onSubmit={handleSubmit(onSubmit)} className="bg-card border border-border rounded-3xl p-8 md:p-12 space-y-6 shadow-lg">
-            {/* Success/Error Message */}
-            {result && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`flex items-start gap-3 p-4 rounded-xl ${
-                  isSuccess ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'
-                }`}
-              >
-                {isSuccess ? (
-                  <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                ) : (
-                  <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                )}
-                <p className={`text-sm ${isSuccess ? 'text-green-800' : 'text-red-800'}`}>{result}</p>
-              </motion.div>
-            )}
-
-            {/* Name and Email Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="name" className="text-foreground font-medium">
-                  Full Name
-                </Label>
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder="Your name"
-                  {...register('name', { required: 'Name is required' })}
-                  className="bg-background h-12"
-                />
-                {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-foreground font-medium">
-                  Email Address
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="your.email@example.com"
-                  {...register('email', {
-                    required: 'Email is required',
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: 'Invalid email address',
-                    },
-                  })}
-                  className="bg-background h-12"
-                />
-                {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
-              </div>
-            </div>
-
-            {/* Phone and Subject Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="phone" className="text-foreground font-medium">
-                  Phone Number
-                </Label>
-                <Input
-                  id="phone"
-                  type="tel"
-                  placeholder="(407) 555-0123"
-                  {...register('phone', { required: 'Phone number is required' })}
-                  className="bg-background h-12"
-                />
-                {errors.phone && <p className="text-sm text-destructive">{errors.phone.message}</p>}
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="subject" className="text-foreground font-medium">
-                  Subject
-                </Label>
-                <Input
-                  id="subject"
-                  type="text"
-                  placeholder="Looking for a family home"
-                  {...register('subject', { required: 'Subject is required' })}
-                  className="bg-background h-12"
-                />
-                {errors.subject && <p className="text-sm text-destructive">{errors.subject.message}</p>}
-              </div>
-            </div>
-
-            {/* Message */}
-            <div className="space-y-2">
-              <Label htmlFor="message" className="text-foreground font-medium">
-                Message
-              </Label>
-              <Textarea
-                id="message"
-                placeholder="Tell me about your family and what you're looking for... How many kids do you have? What neighborhoods interest you? Are good schools a priority?"
-                rows={6}
-                {...register('message', {
-                  required: 'Message is required',
-                  minLength: {
-                    value: 10,
-                    message: 'Message must be at least 10 characters',
-                  },
-                })}
-                className="bg-background resize-none"
-              />
-              {errors.message && <p className="text-sm text-destructive">{errors.message.message}</p>}
-            </div>
-
-            {/* Honeypot field for spam protection */}
-            <input
-              type="checkbox"
-              id="botcheck"
-              className="hidden"
-              style={{ display: 'none' }}
-              {...register('botcheck')}
-            />
-
-            {/* Submit Button */}
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full h-12 font-medium text-base shadow-md hover:shadow-lg transition-all"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Sending...
-                </>
-              ) : (
-                'Start the Conversation'
-              )}
-            </Button>
-
-            {/* Privacy Notice */}
-            <p className="text-xs text-muted-foreground text-center">
-              Your privacy matters. I will never share your family's information with anyone.
-            </p>
-          </form>
-        </motion.div>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Field id="firstName" label="First Name" error={errors.firstName?.message}>
+          <Input
+            id="firstName"
+            autoComplete="given-name"
+            className="h-12 bg-card"
+            aria-invalid={!!errors.firstName}
+            {...register("firstName", { required: "First name is required" })}
+          />
+        </Field>
+        <Field id="lastName" label="Last Name" error={errors.lastName?.message}>
+          <Input
+            id="lastName"
+            autoComplete="family-name"
+            className="h-12 bg-card"
+            aria-invalid={!!errors.lastName}
+            {...register("lastName", { required: "Last name is required" })}
+          />
+        </Field>
       </div>
-    </section>
+
+      <Field id="email" label="Email" error={errors.email?.message}>
+        <Input
+          id="email"
+          type="email"
+          autoComplete="email"
+          inputMode="email"
+          className="h-12 bg-card"
+          aria-invalid={!!errors.email}
+          {...register("email", {
+            required: "Email is required",
+            pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Enter a valid email address" },
+          })}
+        />
+      </Field>
+
+      <Field id="phone" label="Phone Number" error={errors.phone?.message}>
+        <Input
+          id="phone"
+          type="tel"
+          autoComplete="tel"
+          inputMode="tel"
+          className="h-12 bg-card"
+          aria-invalid={!!errors.phone}
+          {...register("phone", { required: "Phone number is required" })}
+        />
+      </Field>
+
+      <Field id="interest" label="I'm interested in…" error={errors.interest?.message}>
+        <Controller
+          control={control}
+          name="interest"
+          rules={{ required: "Choose what you're interested in" }}
+          render={({ field }) => (
+            <Select value={field.value} onValueChange={field.onChange} name={field.name}>
+              <SelectTrigger
+                id="interest"
+                className="w-full bg-card data-[size=default]:h-12"
+                aria-invalid={!!errors.interest}
+              >
+                <SelectValue placeholder="Select one" />
+              </SelectTrigger>
+              <SelectContent>
+                {interests.map((i) => (
+                  <SelectItem key={i} value={i}>
+                    {i}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
+      </Field>
+
+      <Field id="message" label="Your Message" optional>
+        <Textarea
+          id="message"
+          rows={5}
+          className="resize-none bg-card"
+          {...register("message")}
+        />
+      </Field>
+
+      {/* Honeypot */}
+      <input
+        type="checkbox"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+        aria-hidden="true"
+        {...register("botcheck")}
+      />
+
+      <Button type="submit" size="cta" disabled={isSubmitting} className="w-full sm:w-auto" data-analytics="contact-submit">
+        {isSubmitting ? (
+          <>
+            <Loader2 className="animate-spin" aria-hidden="true" />
+            Sending
+          </>
+        ) : (
+          <>
+            Send Message
+            <ArrowRight aria-hidden="true" />
+          </>
+        )}
+      </Button>
+    </form>
+  );
+}
+
+function Field({
+  id,
+  label,
+  error,
+  optional,
+  children,
+}: {
+  id: string;
+  label: string;
+  error?: string;
+  optional?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor={id} className="text-sm font-medium text-navy">
+        {label}
+        {!optional && (
+          <span className="text-gold-ink" aria-hidden="true">
+            *
+          </span>
+        )}
+      </Label>
+      {children}
+      {error && (
+        <p className="text-xs text-destructive" role="alert">
+          {error}
+        </p>
+      )}
+    </div>
   );
 }

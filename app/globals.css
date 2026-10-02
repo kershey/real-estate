@@ -6,9 +6,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-serif: var(--font-fraunces);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-libre-baskerville);
+  --font-script: var(--font-caveat);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -38,126 +38,195 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  /* Brand roles from the client's Site Overview. */
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-gold: var(--gold);
+  --color-gold-ink: var(--gold-ink);
+  --color-gold-soft: var(--gold-soft);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /*
-  Warm family palette. Hue anchored 45-85deg (clay through warm sand).
-  Chroma is deliberately non-zero on every user-facing token: a fully
-  desaturated black/white/gray theme reads as modern-luxury, which is the
-  opposite of this site's audience. See
-  openspec/changes/warm-family-repositioning/design.md - D2.
+  Paul E. | Realtor brand tokens.
 
-  Contrast verified against WCAG 2.1:
-    foreground/background 16.04:1, muted-foreground/background 5.87:1,
-    primary-foreground/primary 7.66:1, input/surface 3.29:1, ring 3.60:1.
+  Exact values come from the client's Site Overview:
+    Deep Navy  #0B1B33   main text and button color
+    Warm Gold  #C89532   accent only: lines, highlights, hover
+    Warm White #FAF8F4   70-80% of the site
+    Charcoal   #25282D   body text
 
-  --border is intentionally low-contrast (decorative dividers only).
-  --input is a separate, darker token because a form field's boundary is
-  the only visual indicator of the control and must clear 3:1 (WCAG 1.4.11).
+  Two derived tokens exist for accessibility:
+    --gold-ink  a darker gold for small text on light surfaces
+                (#C89532 on #FAF8F4 is only ~2.9:1, --gold-ink is ~5.2:1).
+    --gold-soft a tint used for icon wells and hover washes.
+
+  Radius is deliberately small: the brief asks for square or slightly
+  rounded buttons, not pill-shaped app buttons.
 */
 :root {
-  --radius: 0.625rem;
-  --background: oklch(0.99 0.006 85);
-  --foreground: oklch(0.24 0.018 55);
-  --card: oklch(0.995 0.0045 85);
-  --card-foreground: oklch(0.24 0.018 55);
-  --popover: oklch(0.995 0.0045 85);
-  --popover-foreground: oklch(0.24 0.018 55);
-  --primary: oklch(0.44 0.075 45);
-  --primary-foreground: oklch(0.985 0.008 85);
-  --secondary: oklch(0.95 0.014 80);
-  --secondary-foreground: oklch(0.3 0.03 50);
-  --muted: oklch(0.96 0.012 82);
-  --muted-foreground: oklch(0.5 0.022 55);
-  --accent: oklch(0.92 0.038 75);
-  --accent-foreground: oklch(0.32 0.038 45);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.9 0.012 78);
-  --input: oklch(0.64 0.028 62);
-  --ring: oklch(0.62 0.058 50);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.98 0.008 84);
-  --sidebar-foreground: oklch(0.24 0.018 55);
-  --sidebar-primary: oklch(0.44 0.075 45);
-  --sidebar-primary-foreground: oklch(0.985 0.008 85);
-  --sidebar-accent: oklch(0.95 0.014 80);
-  --sidebar-accent-foreground: oklch(0.3 0.03 50);
-  --sidebar-border: oklch(0.9 0.012 78);
-  --sidebar-ring: oklch(0.62 0.058 50);
+  --radius: 0.25rem;
+
+  --navy: #0b1b33;
+  --navy-deep: #071224;
+  --gold: #c89532;
+  --gold-ink: #8a651b;
+  --gold-soft: #f3eadb;
+
+  --background: #faf8f4;
+  --foreground: #25282d;
+  --card: #ffffff;
+  --card-foreground: #25282d;
+  --popover: #ffffff;
+  --popover-foreground: #25282d;
+  --primary: #0b1b33;
+  --primary-foreground: #ffffff;
+  --secondary: #f1ede5;
+  --secondary-foreground: #0b1b33;
+  --muted: #f1ede5;
+  --muted-foreground: #585d66;
+  --accent: #f3eadb;
+  --accent-foreground: #0b1b33;
+  --destructive: #b3261e;
+  --border: #e6e0d3;
+  --input: #c9c2b4;
+  --ring: #c89532;
+  --chart-1: #0b1b33;
+  --chart-2: #c89532;
+  --chart-3: #585d66;
+  --chart-4: #8a651b;
+  --chart-5: #25282d;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #25282d;
+  --sidebar-primary: #0b1b33;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f3eadb;
+  --sidebar-accent-foreground: #0b1b33;
+  --sidebar-border: #e6e0d3;
+  --sidebar-ring: #c89532;
 }
 
+/*
+  The site ships light-only by design (the brief is a warm-white site), but
+  the tokens are kept coherent under .dark so nothing breaks if a theme
+  toggle is ever added.
+*/
 .dark {
-  --background: oklch(0.19 0.012 55);
-  --foreground: oklch(0.96 0.008 85);
-  --card: oklch(0.24 0.014 52);
-  --card-foreground: oklch(0.96 0.008 85);
-  --popover: oklch(0.24 0.014 52);
-  --popover-foreground: oklch(0.96 0.008 85);
-  --primary: oklch(0.74 0.07 55);
-  --primary-foreground: oklch(0.22 0.02 50);
-  --secondary: oklch(0.3 0.018 52);
-  --secondary-foreground: oklch(0.96 0.008 85);
-  --muted: oklch(0.3 0.018 52);
-  --muted-foreground: oklch(0.72 0.018 65);
-  --accent: oklch(0.34 0.03 55);
-  --accent-foreground: oklch(0.96 0.008 85);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(0.34 0.016 55);
-  --input: oklch(0.55 0.024 58);
-  --ring: oklch(0.6 0.05 50);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.24 0.014 52);
-  --sidebar-foreground: oklch(0.96 0.008 85);
-  --sidebar-primary: oklch(0.74 0.07 55);
-  --sidebar-primary-foreground: oklch(0.22 0.02 50);
-  --sidebar-accent: oklch(0.3 0.018 52);
-  --sidebar-accent-foreground: oklch(0.96 0.008 85);
-  --sidebar-border: oklch(0.34 0.016 55);
-  --sidebar-ring: oklch(0.6 0.05 50);
+  --background: #0b1b33;
+  --foreground: #f4f1ea;
+  --card: #112543;
+  --card-foreground: #f4f1ea;
+  --popover: #112543;
+  --popover-foreground: #f4f1ea;
+  --primary: #f4f1ea;
+  --primary-foreground: #0b1b33;
+  --secondary: #16304f;
+  --secondary-foreground: #f4f1ea;
+  --muted: #16304f;
+  --muted-foreground: #b7bec9;
+  --accent: #1c3a5e;
+  --accent-foreground: #f4f1ea;
+  --destructive: #ff8a80;
+  --border: #22406a;
+  --input: #3a5a85;
+  --ring: #c89532;
+  --gold-ink: #e0b25a;
+  --gold-soft: #1c3a5e;
+  --sidebar: #112543;
+  --sidebar-foreground: #f4f1ea;
+  --sidebar-primary: #f4f1ea;
+  --sidebar-primary-foreground: #0b1b33;
+  --sidebar-accent: #1c3a5e;
+  --sidebar-accent-foreground: #f4f1ea;
+  --sidebar-border: #22406a;
+  --sidebar-ring: #c89532;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
-    /*
-      Geist was loaded but never actually applied - nothing set font-family,
-      so body copy fell through to the system sans. Same @theme inline caveat
-      as the headings below: reference the next/font variable directly.
-    */
-    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
   }
-  /*
-    Display headings use the humanist serif; interface text stays on Geist.
-    Geist is a geometric grotesque drawn for developer tooling - precise
-    and cool. The serif is what makes headings read warm rather than
-    technical. See design.md - D3.
-
-    h3 is deliberately excluded: it is used here for small card titles and
-    uppercase footer labels, where a serif reads fussy rather than warm.
-
-    Reference --font-fraunces directly, not --font-serif: `@theme inline`
-    inlines theme values into generated utilities and does not emit them as
-    custom properties, so var(--font-serif) resolves to nothing here. The
-    --font-serif entry in @theme is what powers the `font-serif` utility.
-  */
   h1,
-  h2 {
-    font-family: var(--font-fraunces), ui-serif, Georgia, serif;
-    letter-spacing: -0.015em;
+  h2,
+  h3 {
+    font-family: var(--font-libre-baskerville), ui-serif, Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .font-script {
+    font-family: var(--font-caveat), "Segoe Script", cursive;
+  }
+  /* Short gold rule used under section titles and as a brand mark. */
+  .gold-rule {
+    display: block;
+    width: 3rem;
+    height: 2px;
+    background: var(--gold);
+  }
+  /* Shared horizontal page gutter. 16px on phones, wider on desktop. */
+  .container-site {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2.5rem);
+  }
+  /* Dark photo wash used over hero imagery so headline text stays legible. */
+  .hero-wash {
+    background: linear-gradient(
+        to right,
+        color-mix(in oklab, var(--navy) 82%, transparent) 0%,
+        color-mix(in oklab, var(--navy) 55%, transparent) 45%,
+        color-mix(in oklab, var(--navy) 10%, transparent) 100%
+      ),
+      linear-gradient(
+        to top,
+        color-mix(in oklab, var(--navy) 60%, transparent) 0%,
+        transparent 40%
+      );
+  }
+  /* Subtle navy band texture: faint diagonal lines, no gradient text. */
+  .navy-texture {
+    background-color: var(--navy);
+    background-image: repeating-linear-gradient(
+      135deg,
+      color-mix(in oklab, white 4%, transparent) 0 1px,
+      transparent 1px 22px
+    );
   }
 }
