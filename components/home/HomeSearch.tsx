@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { IdxWidget } from "@/components/home/IdxWidget";
 import { idx } from "@/lib/site";
@@ -77,18 +78,31 @@ export function HomeSearch() {
           <div className="mx-auto max-w-[62rem] border border-navy/15 bg-card p-2 shadow-[0_24px_48px_-32px_rgb(11_27_51/0.5)] sm:p-4">
             <IdxWidget />
           </div>
-          <p className="mx-auto mt-3 max-w-[62rem] text-xs text-muted-foreground">
-            Listings provided by{" "}
+          <div className="mx-auto mt-3 flex max-w-[62rem] flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+            <p>
+              Listings provided by{" "}
+              <a
+                href={idx.homeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline-offset-4 hover:text-navy hover:underline"
+              >
+                Dalton Wade Real Estate Group
+              </a>
+              . Browse freely, no sign-up required.
+            </p>
+            {/* Always-available path to listings in case the embed is blocked by the IDX host. */}
             <a
               href={idx.homeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline-offset-4 hover:text-navy hover:underline"
+              className="inline-flex items-center gap-1 font-semibold text-navy underline-offset-4 hover:text-gold-ink hover:underline"
+              data-analytics="idx-open-full-search"
             >
-              Dalton Wade Real Estate Group
+              Open the full search
+              <ArrowRight className="size-3.5" aria-hidden="true" />
             </a>
-            . Browse freely, no sign-up required.
-          </p>
+          </div>
         </FadeIn>
       </div>
     </section>
