@@ -36,6 +36,15 @@ export const site = {
   },
 } as const;
 
+/**
+ * Brokerage IDX (Dalton Wade). `widgetUrl` is the iframe embed Paul
+ * supplied; `homeUrl` is the full IDX site it submits to.
+ */
+export const idx = {
+  widgetUrl: "https://paulellis.daltonwade.com/wide.php",
+  homeUrl: "https://paulellis.daltonwade.com/",
+} as const;
+
 export const nav = [
   { href: "/", label: "Home" },
   { href: "/explore", label: "Explore Central Florida" },

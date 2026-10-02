@@ -18,7 +18,9 @@ import { communities, communityFacts, type Community } from "@/lib/communities";
 
 /**
  * Twelve community tiles. Clicking one opens a concise snapshot panel with
- * the approved six-point pattern and exactly two actions. The open tile is
+ * the approved six-point pattern and exactly two actions ("Search [City]
+ * Homes" returns to the IDX search tool on the Home page, per the client's
+ * instructions; "Ask Paul" opens the contact form). The open tile is
  * mirrored in the URL (?community=slug) so Home page teasers and shared links
  * open the right panel.
  */
@@ -107,7 +109,7 @@ function CommunityPanel({ community }: { community: Community }) {
 
       <div className="flex flex-col gap-3 border-t bg-secondary px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-10">
         <Button asChild size="cta" className="h-auto min-h-12 whitespace-normal py-3 text-center">
-          <Link href={`/?q=${encodeURIComponent(community.name)}#search`} data-analytics="community-search">
+          <Link href="/#search" data-analytics="community-search">
             <Search aria-hidden="true" />
             Search {community.name} Homes
           </Link>
