@@ -19,8 +19,8 @@ export function CommunitiesSection() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="max-w-[52ch] text-base leading-relaxed text-muted-foreground md:text-lg lg:ml-auto">
-              Each community offers its own unique lifestyle, amenities and opportunities. Select
-              a city below to learn more and see available homes.
+              Each community offers its own unique lifestyle, amenities and opportunities. Click
+              on a city below to learn more and see available homes.
             </p>
           </FadeIn>
         </div>

@@ -1,13 +1,13 @@
 /**
  * The twelve featured communities on the Explore page.
  *
- * Copy is transcribed from the client's "Explore Central Florida - Expanded
- * Community Tile Copy" PDF. The PDF (and Paul's email) lists Horizon West,
- * Windermere / Dr. Phillips, Oviedo, Sanford and Winter Garden; the Page 2
- * mockup instead shows Winter Park, Dr. Phillips, DeLand, Deltona and Winter
- * Haven. This file follows the PDF because it is the only source with full
- * copy for every community. Swap entries here if the client confirms the
- * other list.
+ * Copy is transcribed verbatim from the client's "Explore Central Florida -
+ * Expanded Community Tile Copy" PDF, including its punctuation. The PDF (and
+ * Paul's email) lists Horizon West, Windermere / Dr. Phillips, Oviedo,
+ * Sanford and Winter Garden; the Page 2 copy document and mockup instead
+ * name Winter Park, Dr. Phillips, DeLand, Deltona and Winter Haven. This
+ * file follows the PDF because it is the only source with approved copy for
+ * every community. Swap entries here if the client confirms the other list.
  *
  * `image` is optional on purpose: no city photography was supplied. When a
  * photo is absent the tile renders a designed navy panel. See
@@ -16,7 +16,7 @@
 export interface Community {
   slug: string;
   name: string;
-  /** Short display name for tight tiles. */
+  /** Short display name for tight tiles and buttons. */
   shortName?: string;
   tagline: string;
   county: string;
@@ -47,7 +47,7 @@ export const communities: Community[] = [
     housing:
       "Everything from downtown condos and townhomes to historic properties, established neighborhoods, newer communities and luxury homes.",
     lifestyle:
-      "Orlando offers one of Central Florida's widest lifestyle ranges, from active urban living to quiet residential neighborhoods just minutes from the city.",
+      "Orlando offers one of Central Florida's widest lifestyle ranges - from active urban living to quiet residential neighborhoods just minutes from the city.",
     gettingAround:
       "Major highways connect Orlando to the surrounding region, while SunRail and LYNX provide additional transportation options. Orlando International Airport makes regional and national travel especially convenient.",
     realEstateNote:
@@ -71,7 +71,7 @@ export const communities: Community[] = [
     gettingAround:
       "Kissimmee offers road access throughout Osceola and Orange counties along with SunRail service. Downtown also has local transportation connections to major destinations.",
     realEstateNote:
-      "Kissimmee covers a very large area. Location can make a major difference in commute times, community feel and proximity to Orlando attractions and employment centers.",
+      "\"Kissimmee\" covers a very large area. Location can make a major difference in commute times, community feel and proximity to Orlando attractions and employment centers.",
     ask: "Thinking about Kissimmee?",
     featured: true,
   },
@@ -111,7 +111,7 @@ export const communities: Community[] = [
     gettingAround:
       "Primarily vehicle-based, with State Road 429 providing an important connection to other parts of Central Florida.",
     realEstateNote:
-      "With continued growth, buyers should consider future development, infrastructure, commute and what is planned around a neighborhood, not just what exists today.",
+      "With continued growth, buyers should consider future development, infrastructure, commute and what is planned around a neighborhood - not just what exists today.",
     ask: "Want to explore Apopka?",
     featured: true,
   },
@@ -131,7 +131,7 @@ export const communities: Community[] = [
     gettingAround:
       "Major routes include U.S. 192, Florida's Turnpike and the Narcoossee corridor. Transportation and congestion are important considerations as the area grows.",
     realEstateNote:
-      "St. Cloud is especially important for new-construction buyers. Compare builders, incentives, HOA/CDD costs, lot premiums, included features and commute, not simply base prices.",
+      "St. Cloud is especially important for new-construction buyers. Compare builders, incentives, HOA/CDD costs, lot premiums, included features and commute - not simply base prices.",
     ask: "Considering new construction in St. Cloud?",
   },
   {
@@ -150,7 +150,7 @@ export const communities: Community[] = [
     gettingAround:
       "Primarily vehicle-oriented, with State Road 50 and U.S. 27 providing important regional connections.",
     realEstateNote:
-      "Clermont covers a sizable area, so buyers should consider commute, elevation, lake access, new development and proximity to daily conveniences, not simply the Clermont mailing address.",
+      "Clermont covers a sizable area, so buyers should consider commute, elevation, lake access, new development and proximity to daily conveniences - not simply the Clermont mailing address.",
     ask: "Could Clermont fit your lifestyle?",
   },
   {
@@ -169,7 +169,7 @@ export const communities: Community[] = [
     gettingAround:
       "State Road 429 is a major regional connection, while local roads connect Horizon West with Winter Garden, Windermere and the attractions area.",
     realEstateNote:
-      "This is one of the most important areas for new-construction clients. Builder, village, HOA/CDD structure, lot location and future surrounding development should all be evaluated before choosing a home.",
+      "This is one of the website's most important areas for new-construction clients. Builder, village, HOA/CDD structure, lot location and future surrounding development should all be evaluated before choosing a home.",
     ask: "Want help comparing Horizon West builders?",
   },
   {
@@ -208,7 +208,7 @@ export const communities: Community[] = [
     gettingAround:
       "U.S. 27 and Interstate 4 are the area's primary regional transportation corridors. Most daily travel is vehicle-dependent.",
     realEstateNote:
-      "Davenport can describe a broad search area. Buyers should pay close attention to the home's exact location, commute, HOA/CDD costs, community amenities and intended property use.",
+      "\"Davenport\" can describe a broad search area. Buyers should pay close attention to the home's exact location, commute, HOA/CDD costs, community amenities and intended property use.",
     ask: "Considering Davenport?",
   },
   {
@@ -246,7 +246,7 @@ export const communities: Community[] = [
     gettingAround:
       "I-4 and SR 417 provide regional access, and Sanford's location places it between Greater Orlando and the Daytona/Atlantic Coast direction.",
     realEstateNote:
-      "Sanford gives buyers several very different options, from historic properties near downtown to conventional suburban communities, so property age, condition and neighborhood location deserve careful comparison.",
+      "Sanford gives buyers several very different options - from historic properties near downtown to conventional suburban communities - so property age, condition and neighborhood location deserve careful comparison.",
     ask: "Curious about Historic Sanford or surrounding communities?",
   },
   {

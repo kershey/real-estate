@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Libre_Baskerville, Caveat } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { site } from "@/lib/site";
+import { AnalyticsEvents } from "@/components/site/AnalyticsEvents";
 
 // Fonts per the client's Site Overview: Libre Baskerville for headlines,
 // Inter for body, menu and buttons. Caveat carries the short handwritten
@@ -53,6 +55,8 @@ export default function RootLayout({
         className={`${inter.variable} ${libreBaskerville.variable} ${caveat.variable} min-h-screen antialiased`}
       >
         {children}
+        <Analytics />
+        <AnalyticsEvents />
       </body>
     </html>
   );

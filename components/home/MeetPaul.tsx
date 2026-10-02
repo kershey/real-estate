@@ -46,7 +46,7 @@ export function MeetPaul() {
             <p className="mt-6 max-w-[56ch] text-base leading-relaxed text-foreground md:text-lg">
               With over 5 years of experience, I help buyers, sellers, and relocating clients
               navigate Central Florida with confidence. I specialize in new construction,
-              relocation, and strategic negotiations, always putting my clients&rsquo; goals
+              relocation, and strategic negotiations &mdash; always putting my clients&rsquo; goals
               first. Real estate isn&rsquo;t just what I do, it&rsquo;s how I serve.
             </p>
             <Button asChild size="cta" className="mt-8">

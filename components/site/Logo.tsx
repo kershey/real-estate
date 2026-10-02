@@ -59,7 +59,7 @@ export function Logo({ className, compact = false, inverted = false }: LogoProps
         <span className="flex flex-col leading-none">
           <span
             className={cn(
-              "font-serif text-[1.35rem] tracking-tight",
+              "font-serif text-[1.2rem] tracking-tight xl:text-[1.35rem]",
               ink
             )}
           >
@@ -67,7 +67,7 @@ export function Logo({ className, compact = false, inverted = false }: LogoProps
           </span>
           <span
             className={cn(
-              "mt-1 hidden whitespace-nowrap text-[0.5625rem] sm:block font-semibold uppercase tracking-[0.18em]",
+              "mt-1 hidden whitespace-nowrap text-[0.5625rem] xl:block font-semibold uppercase tracking-[0.18em]",
               inverted ? "text-white/70" : "text-muted-foreground"
             )}
           >

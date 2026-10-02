@@ -65,10 +65,10 @@ export function Header() {
           scrolled ? "shadow-[0_1px_0_0_var(--border),0_8px_24px_-16px_rgb(11_27_51/0.35)]" : ""
         )}
       >
-        <div className="container-site flex h-[4.5rem] items-center justify-between gap-6">
+        <div className="container-site flex h-[4.5rem] items-center justify-between gap-4 xl:gap-6">
           <Logo />
 
-          <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-4 md:flex lg:gap-5 xl:gap-8">
             {nav.map((item) => {
               const active =
                 item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
@@ -78,7 +78,7 @@ export function Header() {
                   href={item.href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "relative py-2 text-sm font-medium text-navy transition-colors hover:text-gold-ink",
+                    "relative whitespace-nowrap py-2 text-[0.8125rem] font-medium text-navy transition-colors hover:text-gold-ink xl:text-sm",
                     "after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:bg-gold after:transition-transform after:duration-300 after:ease-[var(--ease-out-quart)]",
                     active && "after:scale-x-100"
                   )}
@@ -89,15 +89,16 @@ export function Header() {
             })}
           </nav>
 
-          <div className="hidden items-center gap-3 md:flex">
-            <Button asChild variant="outline" size="default" className="h-10 px-4 text-xs font-semibold uppercase tracking-[0.1em]">
+          <div className="hidden items-center gap-2 md:flex xl:gap-3">
+            {/* Navy text link below xl, outlined navy button from xl: both forms are allowed by the Site Overview. */}
+            <Button asChild variant="outline" size="default" className="h-10 border-0 px-1 text-xs font-semibold uppercase tracking-[0.06em] hover:bg-transparent xl:tracking-[0.1em] hover:text-gold-ink xl:border xl:px-4 xl:hover:bg-primary xl:hover:text-primary-foreground">
               <Link href="/#search" data-analytics="header-search">
                 <Search aria-hidden="true" />
                 Search Homes
               </Link>
             </Button>
-            <div className="hidden xl:block">
-              <ScheduleButton size="default" className="h-10 px-4 text-xs font-semibold uppercase tracking-[0.1em]">
+            <div className="hidden lg:block">
+              <ScheduleButton size="default" className="h-10 px-3 text-xs font-semibold uppercase tracking-[0.06em] xl:px-4 xl:tracking-[0.1em]">
                 Schedule a Call
               </ScheduleButton>
             </div>

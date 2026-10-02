@@ -7,9 +7,9 @@ import { pathways } from "@/lib/pathways";
 
 /**
  * The four pathways as educational mini-guides. Each anchor matches the
- * Home page card link (/explore#new-construction and so on). Downloadable
- * guides are coming later per the client, so the action for now is a
- * conversation with Paul about that path.
+ * Home page card link (/explore#new-construction and so on). "Learn More"
+ * will point at the downloadable guides once the client supplies them; until
+ * then it opens the contact form with that pathway pre-selected.
  */
 export function JourneyPaths() {
   return (
@@ -55,18 +55,17 @@ export function JourneyPaths() {
                     {p.headline}
                   </p>
                   <p className="mt-4 max-w-[58ch] text-base leading-relaxed text-foreground">{p.body}</p>
-                  <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-8">
+                  <div className="mt-auto pt-8">
                     <Link
                       href={`/lets-talk?interest=${encodeURIComponent(p.interest)}#contact`}
                       className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-ink"
                     >
-                      Ask Paul about {p.title.toLowerCase()}
+                      Learn More
                       <ArrowRight
                         className="size-4 transition-transform duration-300 group-hover:translate-x-1"
                         aria-hidden="true"
                       />
                     </Link>
-                    <span className="text-xs text-muted-foreground">Expert guide coming soon</span>
                   </div>
                 </article>
               </StaggerItem>
@@ -77,7 +76,7 @@ export function JourneyPaths() {
         <FadeIn className="mx-auto mt-16 max-w-3xl text-center">
           <blockquote>
             <p className="font-serif text-[clamp(1.375rem,2.6vw,2rem)] italic leading-snug text-navy">
-              &ldquo;It&rsquo;s not just about finding a house. It&rsquo;s about finding the right
+              &ldquo;It&rsquo;s not just about finding a house &mdash; it&rsquo;s about finding the right
               place for your next chapter.&rdquo;
             </p>
             <footer className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">

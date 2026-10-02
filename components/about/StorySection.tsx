@@ -32,7 +32,7 @@ export function StorySection() {
               I&rsquo;m a second-generation Realtor with over 5 years of experience, serving buyers,
               sellers, and relocating clients across Central Florida. Real estate has always been
               part of my life, and I&rsquo;ve seen firsthand how the right guidance can change
-              lives. My goal is simple: to educate, advocate and deliver results while making the
+              lives. My goal is simple &mdash; to educate, advocate and deliver results while making the
               experience as stress-free as possible. I don&rsquo;t stop until my clients are happy.
             </p>
           </FadeIn>

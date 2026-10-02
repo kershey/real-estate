@@ -30,7 +30,7 @@ export function CommunityLife() {
           <p className="mt-7 max-w-[60ch] text-base leading-[1.8] text-foreground md:text-lg">
             I&rsquo;m proud to call Central Florida home. When I&rsquo;m not working with clients,
             you&rsquo;ll find me spending time with family, mentoring young athletes, and giving
-            back to the community. Real estate allows me to do what I love: help people create a
+            back to the community. Real estate allows me to do what I love &mdash; help people create a
             better future, right here in the places we call home.
           </p>
         </FadeIn>

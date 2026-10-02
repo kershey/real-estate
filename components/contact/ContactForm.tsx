@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { pathways } from "@/lib/pathways";
+import { trackEvent } from "@/components/site/AnalyticsEvents";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -73,6 +74,7 @@ export function ContactForm() {
       subject: "New inquiry from PaulEtheRealtor.com",
     },
     onSuccess: () => {
+      trackEvent("contact-form-submitted");
       setStatus({ ok: true, text: "Thank you. Your message is on its way and I'll be in touch soon." });
       reset({ interest: "", message: "" });
     },

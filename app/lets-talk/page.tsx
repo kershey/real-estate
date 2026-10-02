@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { PageHero } from "@/components/site/PageHero";
+import { ScriptAccent } from "@/components/site/ScriptAccent";
 import { CtaBand } from "@/components/site/CtaBand";
 import { ContactSection } from "@/components/contact/ContactSection";
 import { WaysIHelp } from "@/components/contact/WaysIHelp";
@@ -38,7 +39,9 @@ export default function LetsTalkPage() {
             alt: "Paul E. in a tan blazer in a Central Florida neighborhood",
             position: "object-[50%_0%]",
           }}
-        />
+        >
+          <ScriptAccent className="mt-8">People. Places. Possibilities.</ScriptAccent>
+        </PageHero>
         <ContactSection />
         <WaysIHelp />
         <CtaBand

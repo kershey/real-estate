@@ -4,9 +4,12 @@ import { SocialLinks } from "@/components/site/SocialLinks";
 import { nav, site } from "@/lib/site";
 
 /**
- * Site footer per the Site Overview: Paul E. brand on the left, navigation
- * and contact in the middle, brokerage compliance on the right. The
- * brokerage is clearly visible but visually secondary to Paul's brand.
+ * Site footer. Copy follows the Site Overview ("PAUL E. | REALTOR", Central
+ * Florida Real Estate, phone, email, PaulEtheRealtor.com, Dalton Wade Real
+ * Estate Group) and the Page 4 copy (nav links, "Helping You Find More Than
+ * a Home.", copyright, Privacy Policy, Terms of Use). Layout: Paul E. brand
+ * left, contact in the middle, brokerage compliance on the right, visually
+ * secondary to Paul's brand.
  */
 export function Footer() {
   return (
@@ -14,7 +17,11 @@ export function Footer() {
       <div className="container-site grid gap-12 py-16 md:grid-cols-12 md:gap-8">
         <div className="md:col-span-4">
           <Logo />
-          <p className="mt-6 max-w-xs font-serif text-lg leading-snug text-navy">
+          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-navy">
+            {site.name} | {site.title}
+          </p>
+          <p className="mt-1 text-sm text-muted-foreground">Central Florida Real Estate</p>
+          <p className="mt-5 max-w-xs font-serif text-lg leading-snug text-navy">
             {site.footerLine}
           </p>
           <SocialLinks className="mt-6 gap-5 text-navy" iconClassName="size-5" />
@@ -51,14 +58,21 @@ export function Footer() {
               >
                 {site.phone}
               </a>
-              <span className="text-muted-foreground"> &middot; Call or Text</span>
-            </li>
-            <li>
+              <span className="text-muted-foreground"> &bull; </span>
               <a
                 href={`mailto:${site.email}`}
                 className="font-medium text-navy transition-colors hover:text-gold-ink"
+                data-analytics="email-click"
               >
                 {site.email}
+              </a>
+            </li>
+            <li>
+              <a
+                href={site.url}
+                className="font-medium text-navy transition-colors hover:text-gold-ink"
+              >
+                {site.domain}
               </a>
             </li>
             <li className="text-muted-foreground">{site.location}</li>
@@ -70,6 +84,7 @@ export function Footer() {
           <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
             Brokerage
           </h3>
+          {/* TODO(asset): replace with the Dalton Wade horizontal logo when supplied. */}
           <p className="mt-4 font-serif text-base leading-tight text-navy">
             {site.brokerage}
           </p>
@@ -83,10 +98,19 @@ export function Footer() {
 
       <div className="border-t">
         <div className="container-site flex flex-col gap-3 py-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            &copy; {new Date().getFullYear()} {site.name} | {site.title}. All Rights Reserved.
-          </p>
-          <div className="flex items-center gap-4">
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span>
+              &copy; {new Date().getFullYear()} {site.name} | All Rights Reserved.
+            </span>
+            <span aria-hidden="true">|</span>
+            <Link href="/privacy-policy" className="transition-colors hover:text-navy">
+              Privacy Policy
+            </Link>
+            <span aria-hidden="true">|</span>
+            <Link href="/terms-of-use" className="transition-colors hover:text-navy">
+              Terms of Use
+            </Link>
+            <span aria-hidden="true">|</span>
             <a
               href="https://www.hud.gov/program_offices/fair_housing_equal_opp"
               target="_blank"
@@ -95,9 +119,8 @@ export function Footer() {
             >
               Fair Housing
             </a>
-            <span aria-hidden="true" className="h-3 w-px bg-border" />
-            <span className="font-script text-base text-gold-ink">Serving Central Florida</span>
-          </div>
+          </p>
+          <span className="font-script text-base text-gold-ink">Serving Central Florida</span>
         </div>
       </div>
     </footer>

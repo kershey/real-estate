@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Search } from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -49,7 +49,7 @@ export function HomeSearch() {
             Find Homes in Central Florida
           </h2>
           <p className="mt-5 max-w-[48ch] text-base leading-relaxed text-muted-foreground md:text-lg">
-            Search thousands of homes, new construction and upcoming listings, all in one place.
+            Search thousands of homes, new construction and upcoming listings &mdash; all in one place.
           </p>
         </FadeIn>
 
@@ -98,6 +98,7 @@ export function HomeSearch() {
               <Button type="submit" variant="gold" size="cta" className="h-full w-full sm:h-[3.25rem]" data-analytics="idx-search">
                 <Search aria-hidden="true" />
                 Search Homes
+                <ArrowRight aria-hidden="true" />
               </Button>
             </div>
           </form>

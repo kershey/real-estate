@@ -15,6 +15,7 @@ export const site = {
   brokerage: "Dalton Wade Real Estate Group",
   brokerageTagline: "Powered by People. Driven by Results.",
   url: "https://www.pauletherealtor.com",
+  domain: "PaulEtheRealtor.com",
   phone: "407-715-3232",
   phoneHref: "tel:+14077153232",
   smsHref: "sms:+14077153232",
