@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Libre_Baskerville, Caveat } from "next/font/google";
+import { Inter, Libre_Baskerville, Libre_Caslon_Text, Caveat } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { site } from "@/lib/site";
@@ -19,6 +19,14 @@ const libreBaskerville = Libre_Baskerville({
   subsets: ["latin"],
   weight: ["400", "700"],
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+// Closest match to the serif used for headlines in the homepage mockup.
+const libreCaslon = Libre_Caslon_Text({
+  variable: "--font-libre-caslon",
+  subsets: ["latin"],
+  weight: ["400"],
   display: "swap",
 });
 
@@ -52,7 +60,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${libreBaskerville.variable} ${caveat.variable} min-h-screen antialiased`}
+        className={`${inter.variable} ${libreBaskerville.variable} ${libreCaslon.variable} ${caveat.variable} min-h-screen antialiased`}
       >
         {children}
         <Analytics />
