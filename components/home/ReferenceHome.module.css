@@ -49,7 +49,7 @@
 .heroTagline { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; font-weight: 500; margin: 0 0 20px; text-shadow: 0 1px 4px #0008; }
 .heroPortrait { position: absolute; z-index: 1; right: -10px; bottom: 0; height: 58%; aspect-ratio: 585 / 770; }
 .heroPortrait img { object-fit: contain; object-position: bottom; filter: drop-shadow(-6px 0 18px #0004); }
-.heroScript { position: absolute; z-index: 2; left: 20px; bottom: 26px; display: flex; flex-direction: column; margin: 0; font-family: var(--font-caveat), cursive; font-size: 26px; line-height: .95; transform: rotate(-8deg); transform-origin: left bottom; text-shadow: 0 1px 6px #0009; }
+.heroScript { position: absolute; z-index: 2; left: 20px; bottom: 24px; display: flex; flex-direction: column; margin: 0; font-family: var(--font-caveat), cursive; font-weight: 600; font-size: 30px; line-height: 1; letter-spacing: .015em; color: #fff; transform: rotate(-6deg); transform-origin: left bottom; text-shadow: 0 1px 2px #000a, 0 2px 14px #00142399, 0 0 28px #0014234d; }
 .heroScript span:nth-child(2) { padding-left: 18px; }
 .heroScript span:nth-child(3) { padding-left: 8px; }
 
@@ -144,7 +144,7 @@
   .hero h1 { font-size: clamp(48px, 7cqw, 60px); }
   .heroTagline { font-size: 12.5px; margin-bottom: 26px; }
   .heroPortrait { right: 4%; height: 94%; }
-  .heroScript { left: auto; right: 16px; bottom: 30px; font-size: 28px; }
+  .heroScript { left: auto; right: 28px; bottom: 34px; font-size: 32px; transform-origin: right bottom; }
 
   .services { gap: 24px; padding: 28px 32px; }
   .servicePhoto { height: 180px; }
@@ -211,7 +211,7 @@
   .heroTagline { font-size: calc(1.28 * var(--u)); letter-spacing: .095em; margin: calc(-.2 * var(--u)) 0 calc(1.6 * var(--u)); }
   .hero .goldButton { width: calc(21 * var(--u)); height: calc(4.4 * var(--u)); font-weight: 500; }
   .heroPortrait { right: calc(13.2 * var(--u)); height: 96%; }
-  .heroScript { right: calc(.9 * var(--u)); bottom: calc(2.4 * var(--u)); font-size: calc(2.75 * var(--u)); transform: rotate(-12deg); transform-origin: right bottom; }
+  .heroScript { right: calc(1.8 * var(--u)); bottom: calc(4 * var(--u)); font-size: calc(2.85 * var(--u)); transform: rotate(-7deg); transform-origin: right bottom; }
   .heroScript span:nth-child(2) { padding-left: calc(1.6 * var(--u)); }
   .heroScript span:nth-child(3) { padding-left: 0; }
 
@@ -294,15 +294,8 @@
 @container (min-width: 1000px) {
   .service { height: auto; min-height: calc(19.9 * var(--u)); }
   .searchSection::before { top: 0; height: 100%; opacity: .06; }
-  .heroScript { bottom: calc(4.2 * var(--u)); transform: rotate(-9deg); }
   /* Keep the portrait at the mockup's proportions; extra width on very wide screens becomes a dark panel. */
   .meetPhoto img { left: auto !important; width: calc(34 * var(--u)) !important; object-position: center 18%; mask-image: linear-gradient(90deg, transparent, #000 12%); }
-}
-@container (min-width: 640px) and (max-width: 999.98px) {
-  .heroScript { right: 28px; bottom: 36px; font-size: 26px; }
-}
-@container (min-width: 1000px) {
-  .heroScript { right: calc(1.8 * var(--u)); font-size: calc(2.45 * var(--u)); }
 }
 /* Brokerage: official Dalton Wade logo, reversed to white for the navy band. */
 .brokerage { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 210px; max-width: none; mix-blend-mode: normal; }
