@@ -243,3 +243,8 @@
   .heroScript { right: calc(50cqw - .275 * var(--img)); }
 }
 @container (min-width: 1000px) { .heroScript { right: calc(50cqw - .225 * var(--img)); top: calc(.5 * var(--u)); } }
+
+/* Deeper navy behind the headline (Paul's feedback) while the skyline still fades in. */
+@container (min-width: 1000px) {
+  .hero { background: linear-gradient(90deg, #0b1b33f7 0%, #0b1b33e6 26%, #0b1b33a6 40%, #0b1b3333 52%, #0b1b3300 62%), url('/explore/hero-skyline.jpg') center 60% / cover no-repeat, #0b1b33; }
+}

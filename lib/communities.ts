@@ -2,12 +2,9 @@
  * The twelve featured communities on the Explore page.
  *
  * Copy is transcribed verbatim from the client's "Explore Central Florida -
- * Expanded Community Tile Copy" PDF, including its punctuation. The PDF (and
- * Paul's email) lists Horizon West, Windermere / Dr. Phillips, Oviedo,
- * Sanford and Winter Garden; the Page 2 copy document and mockup instead
- * name Winter Park, Dr. Phillips, DeLand, Deltona and Winter Haven. This
- * file follows the PDF because it is the only source with approved copy for
- * every community. Swap entries here if the client confirms the other list.
+ * Expanded Community Tile Copy" PDF, including its punctuation. Paul confirmed
+ * this city list on 2026-10-10; the Page 2 mockup's list (Winter Park, DeLand,
+ * Deltona, Winter Haven) is not used.
  *
  * `image` is optional: Windermere / Dr. Phillips has no photo yet, so its
  * tile renders a designed navy panel until one is supplied.
