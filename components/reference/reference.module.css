@@ -1,0 +1,88 @@
+/*
+ * Shared navy call-to-action band and footer for the inner pages.
+ * Rendered inside the homepage `.page` wrapper, which provides the container
+ * and the --u (1% of page width, capped at 1440px) and --gx (wide-screen gutter) units.
+ */
+
+/* Call to action */
+.cta { position: relative; isolation: isolate; overflow: hidden; background: #0c2243; color: #fff; }
+.cta::before, .cta::after { content: ''; position: absolute; z-index: -1; width: 260px; height: 220px; background: url('/home-reference/palm-fronds.svg') center / contain no-repeat; filter: brightness(2.4); opacity: .07; pointer-events: none; }
+.cta::before { left: -60px; top: -40px; transform: scaleX(-1); }
+.cta::after { right: -50px; bottom: -60px; }
+.ctaInner { display: flex; flex-direction: column; gap: 26px; max-width: 1440px; margin: 0 auto; padding: 40px 22px; }
+.ctaEyebrow { margin: 0 0 10px; font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; }
+.ctaCopy h2 { margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -.02em; }
+.ctaCopy p:last-child { margin: 12px 0 0; font-size: 15px; line-height: 1.45; color: #ffffffe6; }
+.ctaButton { display: inline-flex; align-items: center; justify-content: center; gap: 12px; width: 100%; height: 50px; padding: 0 18px; border: 1px solid #9c793c; border-radius: 3px; color: #fff; background: linear-gradient(105deg, #b68a3f, #aa7d33 55%, #be944f); box-shadow: 0 2px 6px #0003; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+.ctaButton svg { width: 18px; height: 18px; flex-shrink: 0; }
+.ctaButton svg:first-child { width: 22px; height: 22px; }
+.ctaContact { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 18px; font-size: 14px; font-weight: 500; }
+.ctaContact a { display: inline-flex; align-items: center; gap: 10px; }
+.ctaContact svg { width: 17px; height: 17px; }
+.cta a:hover { filter: brightness(.94); }
+
+/* Footer */
+.footer { background: #fff; color: #0c2243; }
+.footerInner { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 1440px; margin: 0 auto; padding: 32px 20px; text-align: center; }
+.footerLogo { display: block; width: 210px; }
+.footerLogo img, .footerMarks img { display: block; width: 100%; height: auto; }
+.footerNav { display: flex; flex-wrap: wrap; justify-content: center; row-gap: 10px; font-size: 14px; }
+.footerNav a { padding: 0 14px; border-right: 1px solid #9aa3ad; line-height: 1; }
+.footerNav a:last-child { border-right: 0; }
+.footerNav a:hover { color: #9a7230; }
+.footerMarks { display: flex; align-items: center; gap: 16px; }
+.footerMarks img { width: 150px; }
+.eho { width: 38px; height: auto; color: #0c2243; flex-shrink: 0; }
+.footerLegal, .footerLine { margin: 0; font-size: 13px; color: #2c3a4f; }
+.footerLegal span + span { margin-left: 12px; padding-left: 12px; border-left: 1px solid #9aa3ad; }
+.footerLine { color: #0c2243; }
+
+/* Tablet */
+@container (min-width: 640px) {
+  .ctaInner { padding: 52px 40px; }
+  .ctaCopy h2 { font-size: 42px; }
+  .ctaButton { width: auto; padding: 0 32px; }
+  .footerInner { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 24px 32px; padding: 32px 40px; text-align: left; }
+  .footerNav { justify-content: flex-end; }
+  .footerMarks { grid-column: 1; }
+  .footerLegal { grid-column: 1; }
+  .footerLine { grid-column: 2; grid-row: 3; justify-self: end; }
+}
+
+/* Desktop: proportions from the 1024px mockup */
+@container (min-width: 1000px) {
+  .cta::before, .cta::after { width: calc(26 * var(--u)); height: calc(22 * var(--u)); }
+  .ctaInner { display: grid; grid-template-columns: 1fr calc(30 * var(--u)); align-items: center; gap: 0; min-height: calc(15.6 * var(--u)); padding: calc(3.7 * var(--u)) calc(7.8 * var(--u)) calc(3.6 * var(--u)) calc(6 * var(--u)); }
+  .ctaEyebrow { margin-bottom: calc(.7 * var(--u)); font-size: calc(1.08 * var(--u)); }
+  .ctaCopy h2 { font-size: calc(3.95 * var(--u)); line-height: 1.15; }
+  .ctaCopy p:last-child { margin-top: calc(.9 * var(--u)); font-size: calc(1.36 * var(--u)); }
+  .ctaActions { align-self: stretch; display: flex; flex-direction: column; justify-content: center; padding-left: calc(2.7 * var(--u)); border-left: 1px solid #ffffff45; }
+  .ctaButton { width: 100%; height: calc(4.7 * var(--u)); gap: calc(1.5 * var(--u)); padding: 0 calc(1.5 * var(--u)); font-size: calc(1.36 * var(--u)); letter-spacing: .03em; }
+  .ctaButton svg { width: calc(1.6 * var(--u)); height: calc(1.6 * var(--u)); }
+  .ctaButton svg:first-child { width: calc(2.4 * var(--u)); height: calc(2.4 * var(--u)); }
+  .ctaContact { flex-wrap: nowrap; justify-content: space-between; gap: calc(2 * var(--u)); margin-top: calc(1.9 * var(--u)); font-size: calc(1.3 * var(--u)); }
+  .ctaContact a { gap: calc(1.1 * var(--u)); }
+  .ctaContact svg { width: calc(1.5 * var(--u)); height: calc(1.5 * var(--u)); }
+
+  .footerInner { grid-template-columns: calc(21 * var(--u)) 1fr auto; grid-template-rows: auto auto; row-gap: calc(3 * var(--u)); column-gap: calc(2 * var(--u)); padding: calc(2 * var(--u)) calc(5.2 * var(--u)) calc(3.4 * var(--u)) calc(3.8 * var(--u)); }
+  .footerLogo { width: 100%; }
+  .footerNav { grid-column: 2; grid-row: 1; justify-content: center; margin-left: calc(2 * var(--u)); font-size: calc(1.28 * var(--u)); }
+  .footerNav a { padding: 0 calc(2.2 * var(--u)); }
+  .footerMarks { grid-column: 3; grid-row: 1; gap: calc(1.6 * var(--u)); }
+  .footerMarks img { width: calc(15.6 * var(--u)); }
+  .eho { width: calc(3.8 * var(--u)); }
+  .footerLegal { grid-column: 1 / 3; grid-row: 2; font-size: calc(1.22 * var(--u)); }
+  .footerLegal span + span { margin-left: calc(1.1 * var(--u)); padding-left: calc(1.1 * var(--u)); }
+  .footerLine { grid-column: 3; grid-row: 2; font-size: calc(1.22 * var(--u)); }
+}
+
+/* Fit pass against the 1024px mockup */
+.ctaContact a { white-space: nowrap; }
+@container (min-width: 1000px) {
+  .ctaCopy h2 { font-size: calc(3.6 * var(--u)); }
+  .ctaCopy p:last-child { font-size: calc(1.24 * var(--u)); }
+  .ctaButton { gap: calc(1.2 * var(--u)); font-size: calc(1.26 * var(--u)); letter-spacing: .02em; }
+  .ctaContact { gap: calc(1.4 * var(--u)); font-size: calc(1.2 * var(--u)); }
+  .footerNav { margin-left: 0; font-size: calc(1.2 * var(--u)); }
+  .footerNav a { padding: 0 calc(1.9 * var(--u)); white-space: nowrap; }
+}

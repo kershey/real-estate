@@ -9,9 +9,8 @@
  * file follows the PDF because it is the only source with approved copy for
  * every community. Swap entries here if the client confirms the other list.
  *
- * `image` is optional on purpose: no city photography was supplied. When a
- * photo is absent the tile renders a designed navy panel. See
- * public/IMAGES_NEEDED.md.
+ * `image` is optional: Windermere / Dr. Phillips has no photo yet, so its
+ * tile renders a designed navy panel until one is supplied.
  */
 export interface Community {
   slug: string;
@@ -37,6 +36,8 @@ export interface Community {
 export const communities: Community[] = [
   {
     slug: "orlando",
+    image: "/home-reference/orlando.jpg",
+    imageAlt: "Downtown Orlando skyline and the Lake Eola fountain",
     name: "Orlando",
     tagline: "City Energy. Endless Opportunity.",
     county: "Orange County",
@@ -57,6 +58,8 @@ export const communities: Community[] = [
   },
   {
     slug: "kissimmee",
+    image: "/home-reference/kissimmee.jpg",
+    imageAlt: "Palm-lined lakefront with a fountain in Kissimmee",
     name: "Kissimmee",
     tagline: "Close to the Magic. Built for More.",
     county: "Osceola County",
@@ -77,6 +80,8 @@ export const communities: Community[] = [
   },
   {
     slug: "lake-nona",
+    image: "/home-reference/lake-nona.jpg",
+    imageAlt: "Lake Nona Town Center with palms and the Wave Hotel",
     name: "Lake Nona",
     tagline: "Innovation. Wellness. What's Next.",
     county: "Orange County",
@@ -97,6 +102,8 @@ export const communities: Community[] = [
   },
   {
     slug: "apopka",
+    image: "/home-reference/apopka.jpg",
+    imageAlt: "Apopka lakefront walkway, fountain and clock tower",
     name: "Apopka",
     tagline: "Natural Beauty. Strong Growth.",
     county: "Orange County",
@@ -117,6 +124,8 @@ export const communities: Community[] = [
   },
   {
     slug: "st-cloud",
+    image: "/explore/st-cloud.jpg",
+    imageAlt: "Sunset over a lakefront pier and gazebo in St. Cloud",
     name: "St. Cloud",
     tagline: "Small-Town Feel. Big Possibilities.",
     county: "Osceola County",
@@ -136,6 +145,8 @@ export const communities: Community[] = [
   },
   {
     slug: "clermont",
+    image: "/explore/clermont.jpg",
+    imageAlt: "Aerial view of downtown Clermont and its lakefront marina",
     name: "Clermont",
     tagline: "Hills, Lakes and a Higher Quality of Life.",
     county: "Lake County",
@@ -155,6 +166,8 @@ export const communities: Community[] = [
   },
   {
     slug: "horizon-west",
+    image: "/explore/horizon-west.jpg",
+    imageAlt: "Palm-lined lakeside shops at Hamlin in Horizon West",
     name: "Horizon West",
     tagline: "New Homes. Connected Living.",
     county: "Orange County",
@@ -175,7 +188,7 @@ export const communities: Community[] = [
   {
     slug: "windermere-dr-phillips",
     name: "Windermere / Dr. Phillips",
-    shortName: "Windermere & Dr. Phillips",
+    shortName: "Dr. Phillips",
     tagline: "Established. Refined. Exceptionally Located.",
     county: "Orange County",
     location:
@@ -194,6 +207,8 @@ export const communities: Community[] = [
   },
   {
     slug: "davenport",
+    image: "/explore/davenport.jpg",
+    imageAlt: "Davenport town center sign, fountain and palm-lined street",
     name: "Davenport",
     tagline: "Space to Grow. A Place to Belong.",
     county: "Polk County",
@@ -213,6 +228,8 @@ export const communities: Community[] = [
   },
   {
     slug: "oviedo",
+    image: "/explore/oviedo.jpg",
+    imageAlt: "Aerial view of the lake and fountain at Oviedo on the Park",
     name: "Oviedo",
     tagline: "Parks, Character and Connected Living.",
     county: "Seminole County",
@@ -232,6 +249,8 @@ export const communities: Community[] = [
   },
   {
     slug: "sanford",
+    image: "/explore/sanford.jpg",
+    imageAlt: "Tree-lined riverwalk and marina in downtown Sanford",
     name: "Sanford",
     tagline: "Historic Roots. A Bright Future.",
     county: "Seminole County",
@@ -251,6 +270,8 @@ export const communities: Community[] = [
   },
   {
     slug: "winter-garden",
+    image: "/explore/winter-garden.jpg",
+    imageAlt: "Shops and flower baskets along Plant Street in Winter Garden",
     name: "Winter Garden",
     tagline: "Historic Charm. Modern Living.",
     county: "Orange County",
@@ -280,3 +301,6 @@ export const communityFacts: { key: keyof Community; label: string }[] = [
   { key: "gettingAround", label: "Getting Around" },
   { key: "realEstateNote", label: "Real Estate Note" },
 ];
+
+/** Communities shown on the Explore grid: only those with a supplied photo. */
+export const exploreCommunities = communities.filter((c) => c.image);

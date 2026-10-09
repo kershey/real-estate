@@ -79,7 +79,7 @@ export function CommunityGrid() {
   );
 }
 
-function CommunityPanel({ community }: { community: Community }) {
+export function CommunityPanel({ community }: { community: Community }) {
   return (
     <article>
       <DialogHeader className="navy-texture space-y-0 px-6 pb-7 pt-8 text-left text-white sm:px-10">

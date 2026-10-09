@@ -3,9 +3,10 @@
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Facebook, Handshake, House, Instagram, KeyRound, Linkedin, Mail, MapPin, Menu, Phone, Search, X, Youtube } from "lucide-react";
+import { ArrowRight, Handshake, House, KeyRound, MapPin, Search } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { idx, nav, scheduleHref, site } from "@/lib/site";
+import { ReferenceHeader } from "@/components/reference/ReferenceHeader";
+import { idx, scheduleHref, site } from "@/lib/site";
 import styles from "./ReferenceHome.module.css";
 
 const asset = (name: string) => `/home-reference/${name}`;
@@ -23,7 +24,6 @@ const places = [
 ];
 
 export function ReferenceHome() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [mode, setMode] = useState("Buy");
   const [searchSummary, setSearchSummary] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
@@ -39,29 +39,7 @@ export function ReferenceHome() {
   return (
     <div className={styles.page}>
       <a className={styles.skipLink} href="#main-content">Skip to content</a>
-      <header className={styles.header}>
-        <div className={styles.headerInner}>
-          <Link href="/" className={styles.logo} aria-label="Paul E the Realtor — Home">
-            <Image src={asset("logo-horizontal.png")} alt="PaulEtheRealtor. Real Estate. Real Expertise. Real Results." width={1794} height={410} sizes="(max-width: 640px) 230px, (max-width: 1024px) 290px, 440px" priority />
-          </Link>
-          <div className={styles.utility}>
-            <a href={site.phoneHref}><Phone aria-hidden="true" />{site.phone}</a>
-            <a href={`mailto:${site.email}`}><Mail aria-hidden="true" />{site.email}</a>
-            <a href={site.social.instagram} aria-label="Instagram" target="_blank" rel="noopener noreferrer"><Instagram /></a>
-            <a href={site.social.facebook} aria-label="Facebook" target="_blank" rel="noopener noreferrer"><Facebook /></a>
-            <a href={site.social.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><Linkedin /></a>
-            <a href="https://www.youtube.com/@pauletherealtor" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><Youtube /></a>
-          </div>
-          <nav id="primary-navigation" className={`${styles.nav} ${menuOpen ? styles.navOpen : ""}`} aria-label="Primary navigation">
-            {nav.map(item => <Link key={item.href} href={item.href} aria-current={item.href === "/" ? "page" : undefined} onClick={() => setMenuOpen(false)}>{item.label}</Link>)}
-            <a className={`${styles.goldButton} ${styles.menuSearch}`} href="#search" onClick={() => setMenuOpen(false)}>Search Homes</a>
-            <a className={styles.menuContact} href={site.phoneHref}><Phone aria-hidden="true" />{site.phone}</a>
-            <a className={styles.menuContact} href={`mailto:${site.email}`}><Mail aria-hidden="true" />{site.email}</a>
-          </nav>
-          <a className={`${styles.goldButton} ${styles.headerSearch}`} href="#search">Search Homes</a>
-          <button className={styles.menuButton} onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="primary-navigation" aria-label={menuOpen ? "Close navigation" : "Open navigation"}>{menuOpen ? <X /> : <Menu />}</button>
-        </div>
-      </header>
+      <ReferenceHeader current="/" searchHref="#search" />
 
       <main id="main-content">
         <section className={styles.hero} aria-labelledby="hero-title">
