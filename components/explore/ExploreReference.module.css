@@ -216,3 +216,30 @@
   .heroScript { top: calc(.5 * var(--u)); right: calc(var(--art) * .235); font-size: calc(2.55 * var(--u)); transform: rotate(-12deg); text-shadow: 0 0 10px #fff9, 0 0 2px #fffc; }
 }
 @container (min-width: 1000px) { .heroScript { right: calc(var(--art) * .255); top: calc(.3 * var(--u)); } }
+
+/* Same hero height as Page 1 at every size (620px phone, 540px tablet, 36.133u desktop). */
+.heroInner { min-height: 620px; }
+@container (min-width: 640px) { .heroInner { min-height: 540px; } }
+@container (min-width: 1000px) {
+  .heroInner { height: calc(36.133 * var(--u)); justify-content: center; padding-top: 0; }
+  .hero { --art: calc(36.133 * var(--u) * 2.994); }
+  .heroScript { top: calc(1.2 * var(--u)); font-size: calc(3.1 * var(--u)); }
+}
+@container (min-width: 1000px) { .heroInner { min-height: 0; } }
+
+/*
+ * Like Page 1: the photo always fills the whole banner (cover), with only a soft fade behind the text.
+ * --img is the photo's rendered width under cover (hero height 36.133u x 2.994, or the full width).
+ * The script is placed in photo coordinates so it stays in the open sky left of the palm (photo x ~59%–77%).
+ */
+@container (min-width: 1000px) {
+  .hero {
+    --img: max(100cqw, calc(36.133 * var(--u) * 2.994));
+    background:
+      linear-gradient(90deg, #0b1b33d9 0%, #0b1b33a6 22%, #0b1b3359 40%, #0b1b3300 58%),
+      url('/explore/hero-skyline.jpg') center 60% / cover no-repeat,
+      #0b1b33;
+  }
+  .heroScript { right: calc(50cqw - .275 * var(--img)); }
+}
+@container (min-width: 1000px) { .heroScript { right: calc(50cqw - .225 * var(--img)); top: calc(.5 * var(--u)); } }
